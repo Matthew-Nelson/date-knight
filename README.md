@@ -48,4 +48,3 @@ Date knight is an app that will randomly generate a movie and dinner choice for 
 
 
 ![](erb.jpg)
- 
