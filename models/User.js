@@ -1,12 +1,5 @@
 const
   mongoose = require('mongoose'),
-  userSchema = new mongoose.Schema({
-    username: String,
-    email: String,
-    zipCode: Number,
-    movies: [movieSchema],
-    restaurants: [restuarantSchema]
-  }),
   restuarantSchema = mongoose.Schema({
     name: String,
     rating: Number,
@@ -16,6 +9,13 @@ const
   movieSchema = mongoose.Schema({
     name: String,
     genre: String
+  }),
+  userSchema = new mongoose.Schema({
+    username: String,
+    email: String,
+    zipCode: Number,
+    movies: [movieSchema],
+    restaurants: [restuarantSchema]
   })
 
 module.exports = mongoose.model('User', userSchema)
