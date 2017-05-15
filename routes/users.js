@@ -4,7 +4,7 @@ const
   usersController = require('../controllers/users.js')
 
 
-usersRouter.route('/')
-  .get(usersController.index)
+usersRouter.route('/:id')
+  .get(usersController.show)
 
 module.exports = usersRouter
