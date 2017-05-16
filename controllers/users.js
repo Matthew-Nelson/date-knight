@@ -13,9 +13,9 @@ module.exports = {
   },
 
   show: (req, res) => {
-    User.findById(req.params.id, (err, users) => {
+    User.findById(req.params.id, (err, user) => {
       if(err) return console.log(err)
-      res.render('show', {users: users})
+      res.render('show', {user: user})
     })
   },
 
@@ -50,4 +50,11 @@ module.exports = {
       res.redirect('/')
     })
   }
+
+  // login: (req, res) => {
+  //   User.findById(req.params.id, (err, user) => {
+  //     if(err) return console.log(err)
+  //     res.render('login', {user: user})
+  //   })
+  // }
 }

@@ -1,21 +1,33 @@
 const
   mongoose = require('mongoose'),
-  restuarantSchema = mongoose.Schema({
+  bcrypt = require('bcrypt-nodejs')
+  restuarantSchema = new mongoose.Schema({
     name: String,
     rating: Number,
     phoneNumber: Number,
     cuisine: String
   }),
-  movieSchema = mongoose.Schema({
+  movieSchema = new mongoose.Schema({
     name: String,
     genre: String
   }),
   userSchema = new mongoose.Schema({
-    username: String,
-    email: String,
+    local: {
+      username: String,
+      email: String,
+      password: String
+    },
     zipCode: Number,
     movies: [movieSchema],
     restaurants: [restuarantSchema]
   })
+
+  userSchema.methods.generateHash = function(password){
+    return bcrypt.hashSync(password, bcrypt.genSaltSync(10))
+  }
+
+  userSchema.methods.validPassword = function(password){
+    return bcrypt.compareSync(password, this.local.password)
+  }
 
 module.exports = mongoose.model('User', userSchema)
