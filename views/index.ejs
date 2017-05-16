@@ -1,3 +1,30 @@
+<style media="screen">
+#movie-roulette {
+      height: 400px;
+      width: 400px;
+      background-image: url('https://target.scene7.com/is/image/Target/17093253');
+    }
+
+    #movie {
+      width: 400px;
+      display: none;
+    }
+
+    .spinning {
+      animation-name: spin-animation;
+      animation-duration: 1s;
+      animation-iteration-count:infinite;
+      -webkit-animation-timing-function: linear; /* Safari 4.0 - 8.0 */
+      animation-timing-function: linear;
+    }
+
+    @keyframes spin-animation {
+      0% { background-position: center 0px }
+      100% { background-position: center -2400px }
+    }
+</style>
+
+
 <div class="row">
   <div class="container">
       <div class="col-md-12 col-centered main text-center">
@@ -13,6 +40,11 @@
   </div>
 </div>
 
+    <div id="movie-roulette">
+      <img id="movie" src="https://wh1k8zidop.inscname.net/big/524810.jpg?v=1462392691">
+    </div>
+
+
 <script type="text/javascript">
   var $mainDiv = $('.main')
   var $dinnerDiv = $('.dinner-div')
@@ -25,7 +57,27 @@
   // var $favoriteThisMovie = $("<span id='faveMovie' class='glyphicon glyphicon-star-empty'></span>")
   // $dinnerDiv.append($favoriteThisDinner)
   // $movieDiv.append($favoriteThisMovie)
+
+  var $movieStrip = $('#movie-roulette')
+  var $movie = $('#movie')
+
+  $randomButton.on('click', function() {
+    $movieStrip.addClass('spinning')
+    $movie.hide()
+
+    // ajax call begins, get a random movie...
+    // in the callback of the ajax call:
+    setTimeout(function() {
+      $movieStrip.removeClass('spinning')
+      $movie.fadeIn()
+    }, 2000)
+  })
+
   $mainDiv.append($zipInput) // to get val do $zipInput.val()
   $mainDiv.append($randomButton)
+
+      // var $button = $('.roll')
+
+
 
 </script>
