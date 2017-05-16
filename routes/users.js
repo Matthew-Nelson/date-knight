@@ -10,7 +10,7 @@ usersRouter.route('/')
 
 usersRouter.get('/new', usersController.new)
 usersRouter.get('/:id/edit', usersController.edit)
-
+usersRouter.get('/:id/favorites', usersController.favorites)
 
 usersRouter.route('/:id')
   .get(usersController.show)

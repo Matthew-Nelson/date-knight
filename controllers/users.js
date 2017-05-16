@@ -13,9 +13,9 @@ module.exports = {
   },
 
   show: (req, res) => {
-    User.findById(req.params.id, (err, users) => {
+    User.findById(req.params.id, (err, user) => {
       if(err) return console.log(err)
-      res.render('show', {users: users})
+      res.render('show', {user: user})
     })
   },
 
@@ -48,6 +48,13 @@ module.exports = {
     User.findByIdAndRemove(req.params.id, (err, user) => {
       if(err) return console.log(err)
       res.redirect('/')
+    })
+  },
+
+  favorites: (req, res) => {
+    User.findById(req.params.id, (err, user) => {
+      if(err) return console.log(err)
+      res.render('favorites', {user: user})
     })
   }
 }
