@@ -37,7 +37,6 @@ app.set('view engine', 'ejs')
 app.use(methodOverride('_method'))
 app.use(ejsLayouts)
 app.use(express.static(__dirname + '/public'))
-<<<<<<< HEAD
 
 app.use(session({
 	secret: 'boomchakalaka',
@@ -49,11 +48,6 @@ app.use(session({
 
 app.use(passport.initialize()) //adding passport middleware
 app.use(passport.session()) //hey passport, whenever you log somebody in, use cookies
-=======
-app.use(logger('dev'))
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded()) //
->>>>>>> ec7571a2471a44c810fc41c2c0c757df91aa05fd
 
 app.use((req, res, next) => {//custom middleware, comes with three arguments, request, response, and whatever comes next
 	app.locals.currentUser = req.user //we are setting a globally accessible user variable
