@@ -18,6 +18,7 @@ const
       password: String
     },
     zipCode: Number,
+    profilePic: String,
     movies: [movieSchema],
     restaurants: [restuarantSchema]
   })

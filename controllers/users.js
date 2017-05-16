@@ -49,6 +49,13 @@ module.exports = {
       if(err) return console.log(err)
       res.redirect('/')
     })
+  },
+
+  favorites: (req, res) => {
+    User.findById(req.params.id, (err, user) => {
+      if (err) return console.log(err)
+      res.render('favorites', {user: user})
+    })
   }
 
   // login: (req, res) => {

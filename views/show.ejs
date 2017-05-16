@@ -1,1 +1,35 @@
-<h1>test show</h1>
+  <div class="row">
+    <div class="col-lg-12 profile-row container-fluid">
+      <div class="col-md-2 col-md-offset-2 center">
+        <!-- Hardcoded for now, should be user.profilePic -->
+        <% if (user.profilePic) { %>
+          <img class="profile-image" src="<%= user.profilePic %>" alt="default profile">
+        <% } else { %>
+          <img class="profile-image" src="/images/default-avatar.png" alt="default profile">
+        <% } %>
+      </div>
+      <div class="col-md-4 center profile-info">
+        <h2><%= user.username %></h2>
+        <p><%= user.zipCode %></p>
+        <span class="glyphicon glyphicon-pencil"></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-12 text-center">
+      <h2>Most Recent Favorites</h2>
+      <!-- Conditionally show most recent starred -->
+      <% if (user.movies.length == 0 && user.restaurants.length == 0) { %>
+        <p>You have no favorites,
+           to start liking dinners or movies click on the star
+           icon after rolling a random date!</p>
+      <% }%>
+      <!-- <button class="btn">See All Favorites</button> -->
+      <hr>
+      <h2>Preferences</h2>
+      <div class="col-lg-10">
+        <!-- Add preferences here -->
+      </div>
+    </div>
+  </div>
