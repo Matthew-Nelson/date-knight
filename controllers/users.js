@@ -3,18 +3,19 @@ const
 
 module.exports = {
 
-  //we will be removing this later, we wont have a users index page
+  //we will be removing this later, using to test full crud w/ json data in postman
   index: (req,res) => {
     User.find({}, (err, usersFromDb) => {
       if(err) return console.log(err)
-      res.render('index', {users: usersFromDb})
+      //json data
+      res.json(usersFromDb)
     })
   },
 
   show: (req, res) => {
-    User.findById(req.params.id, (err, users) => {
+    User.findById(req.params.id, (err, user) => {
       if(err) return console.log(err)
-      res.render('show', {users: users})
+      res.render('show', {user: user})
     })
   },
 
@@ -44,9 +45,16 @@ module.exports = {
   },
 
   destroy: (req, res) => {
-    User.findByIdAndDestroy(req.params.id, (err, user) => {
+    User.findByIdAndRemove(req.params.id, (err, user) => {
       if(err) return console.log(err)
       res.redirect('/')
+    })
+  },
+
+  favorites: (req, res) => {
+    User.findById(req.params.id, (err, user) => {
+      if (err) return console.log(err)
+      res.render('favorites', {user: user})
     })
   }
 }

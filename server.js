@@ -18,14 +18,14 @@ mongoose.connect(mongoDB, (err) => {
 app.set('view engine', 'ejs')
 app.use(methodOverride('_method'))
 app.use(ejsLayouts)
-
+app.use(express.static(__dirname + '/public'))
 app.use(logger('dev'))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded()) //
 
 
 app.get('/', (req, res) => {
-  res.send('<h1>DATE KNIGHT!</h1>')
+  res.render('index')
 })
 
 app.use('/users', usersRoutes)
