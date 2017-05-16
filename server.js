@@ -19,7 +19,6 @@ app.set('view engine', 'ejs')
 app.use(methodOverride('_method'))
 app.use(ejsLayouts)
 app.use(express.static(__dirname + '/public'))
-
 app.use(logger('dev'))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded()) //
