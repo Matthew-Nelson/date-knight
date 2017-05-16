@@ -17,5 +17,7 @@ usersRouter.route('/:id')
   .patch(usersController.update)
   .delete(usersController.destroy)
 
+usersRouter.route('/:id/favorites')
+  .get(usersController.favorites)
 
 module.exports = usersRouter
