@@ -1,5 +1,6 @@
 const
   express = require('express'),
+  passport = require('passport'),
   usersRouter = new express.Router(),
   usersController = require('../controllers/users.js')
 
@@ -17,5 +18,7 @@ usersRouter.route('/:id')
   .patch(usersController.update)
   .delete(usersController.destroy)
 
+usersRouter.route('/:id/favorites')
+  .get(usersController.favorites)
 
 module.exports = usersRouter
