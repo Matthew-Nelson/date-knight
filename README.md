@@ -1,5 +1,5 @@
 # PROJECT # 3: DATE KNIGHT
-![](avatar.png)
+![](logo.png)
 
 ## Date Knight App
 

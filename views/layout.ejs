@@ -19,17 +19,27 @@
                 </button>
                 <a class="navbar-brand" href="/">Date Knight</a>
             </div>
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <div class="collapse navbar-collapse pull-right" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
+                <% if(!isLoggedIn) { %>
                   <li>
                       <a href="/login">Login</a>
-                  </li><li>
+                  </li>
+                <% } %>
+
+                <% if(isLoggedIn) { %>
+                  <li>
                       <a href="/logout">Logout</a>
                   </li>
+                <% } %>
+
                 </ul>
             </div>
         </div>
     </nav>
     <%-body %>
+    <footer>Logo made with <a href="https://logomakr.com">Logomakr</a></footer>
+
   </body>
+
 </html>

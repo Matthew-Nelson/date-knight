@@ -3,9 +3,9 @@ body {
 }
 
 /*Homepage*/
-.question-img {
-  height: 200px;
-  width: 200px;
+.movie-img, .dinner-img {
+  height: 400px;
+  width: 400px;
 }
 
 /*Profile Page*/
