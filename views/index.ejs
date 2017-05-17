@@ -2,23 +2,25 @@
 #movie-roulette {
       height: 400px;
       width: 400px;
+      border-radius: 100%;
       background-image: url('/images/moviepostersss.jpg');
     }
 
     #movie {
       width: 400px;
-      display: none;
+      /*display: none;*/
     }
 
     #food-roulette {
           height: 400px;
           width: 400px;
+          border-radius: 100%;
           background-image: url('/images/foodpostersss.jpg');
         }
 
         #food {
           width: 400px;
-          display: none;
+          /*display: none;*/
         }
 
     .spinning {
@@ -39,15 +41,23 @@
 <div class="row">
   <div class="container">
       <div class="col-md-12 col-centered main text-center">
-        <div class="col-md-6 text-center dinner-div">
+        <div class="col-md-5 col-md-offset-1 text-center dinner-div">
           <h2>Dinner</h2>
           <h3 class="restaurant-name"></h3>
-          <img class="dinner-img" src="/images/question-mark.png" alt="question-mark">
+          <div id="food-roulette">
+            <img id="food" class="dinner-img" src="/images/question-mark.png" alt="question-mark">
+            <!-- <img id="food" src="https://www.lakeridgewinery.com/img/shrimp.jpg"> -->
+          </div>
+
         </div>
-        <div class="col-md-6 text-center movie-div">
+        <div class="col-md-5 text-center movie-div">
           <h2>Movie</h2>
           <h3 class="movie-title"></h3>
-          <img class="movie-img" src="/images/question-mark.png" alt="question-mark">
+          <div id="movie-roulette">
+            <!-- <img id="movie" src="https://wh1k8zidop.inscname.net/big/524810.jpg?v=1462392691"> -->
+            <img id="movie" class="movie-img" src="/images/question-mark.png" alt="question-mark">
+          </div>
+
         </div>
         <select class="foodSelect" name="">
           <option value="american">American</option>
@@ -61,20 +71,17 @@
 
 
     <!-- this is where the ajax request for movie and food will go. -->
-    <div id="movie-roulette">
-      <img id="movie" src="https://wh1k8zidop.inscname.net/big/524810.jpg?v=1462392691">
-    </div>
-
-    <div id="food-roulette">
-      <img id="food" src="https://www.lakeridgewinery.com/img/shrimp.jpg">
-    </div>
 
 
+
+
+<div class="row">
 <div class="text-center col-md-8 col-md-offset-2">
     <h3>Login or Sign Up:</h3>
     <a href="/login" class="btn btn-default">Login</a>
     <a href="/signup" class="btn btn-default">Signup</a>
     <hr>
+</div>
 </div>
 
 
