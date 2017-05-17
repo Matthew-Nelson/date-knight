@@ -5,6 +5,8 @@ const
   usersController = require('../controllers/users.js')
 
 
+usersRouter.get('/', usersController.index)
+
 usersRouter.get('/:id/favorites', usersController.favorites)
 
 usersRouter.route('/:id')
