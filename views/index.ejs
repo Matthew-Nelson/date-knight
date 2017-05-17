@@ -3,21 +3,12 @@
       <div class="col-md-12 col-centered main text-center">
         <div class="col-md-6 text-center dinner-div">
           <h2>Dinner</h2>
-<<<<<<< HEAD
-          <img class="question-img" src="/images/question-mark.png" alt="question-mark">
-        </div>
-        <div class="col-md-6 text-center movie-div">
-          <h2>Movie</h2>
-          <img class="question-img" src="/images/question-mark.png" alt="question-mark">
-=======
-          <h3 class="restaurant-name"></h3>
           <img class="dinner-img" src="/images/question-mark.png" alt="question-mark">
         </div>
         <div class="col-md-6 text-center movie-div">
           <h2>Movie</h2>
-          <h3 class="movie-title"></h3>
           <img class="movie-img" src="/images/question-mark.png" alt="question-mark">
->>>>>>> 0417dfef0f00aa58b5c6c330f3a4104d539f7d73
+          <h3 class="restaurant-name"></h3>
         </div>
         <select class="foodSelect" name="">
           <option value="american">American</option>
@@ -36,10 +27,8 @@
   var $inputDiv = $('.input-div')
   var $zipInput = $('<input type="text" placeholder="Zip Code" class="zipInput"></input><br>')
   var $randomButton = $('<button class="btn">Random Date</button>')
-<<<<<<< HEAD
   var $favoriteThisDinner = $("<span id='faveDinner' class='glyphicon glyphicon-star-empty'></span>")
   var $favoriteThisMovie = $("<span id='faveMovie' class='glyphicon glyphicon-star-empty'></span>")
-=======
   var $dinnerImg = $('.dinner-img')
   var $movieImg = $('.movie-img')
   var $restaurantName = $('.restaurant-name')
@@ -49,7 +38,6 @@
   // var $favoriteThisMovie = $("<span id='faveMovie' class='glyphicon glyphicon-star-empty'></span>")
   // $dinnerDiv.append($favoriteThisDinner)
   // $movieDiv.append($favoriteThisMovie)
->>>>>>> 0417dfef0f00aa58b5c6c330f3a4104d539f7d73
   $mainDiv.append($zipInput) // to get val do $zipInput.val()
   $mainDiv.append($randomButton)
   $favoriteThisDinner.on('click', function() {
@@ -62,10 +50,8 @@
     })
     .done(function(data) {
       console.log(data)
-<<<<<<< HEAD
       $dinnerDiv.append($favoriteThisDinner)
       $movieDiv.append($favoriteThisMovie)
-=======
       var random = Math.floor((Math.random()*data.searchResult.length)+ 1)
       var randomMovie = Math.floor((Math.random()*data.movies.length)+ 1)
       $restaurantName.text(data.searchResult[random].name)
@@ -74,7 +60,6 @@
       $movieImg.attr('src', data.movies[randomMovie].poster_image.image_files[0].url)
       $zipInput.hide()
       $randomButton.hide()
->>>>>>> 0417dfef0f00aa58b5c6c330f3a4104d539f7d73
     })
   })
 

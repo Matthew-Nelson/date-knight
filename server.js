@@ -65,7 +65,7 @@ app.use((req, res, next) => {//custom middleware, comes with three arguments, re
 })
 
 app.get('/', (req, res) => {
-res.render('index')
+  res.render('index')
 })
 
 app.get('/random', (req, res) => {
