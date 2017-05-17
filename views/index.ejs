@@ -3,15 +3,11 @@
       <div class="col-md-12 col-centered main text-center">
         <div class="col-md-6 text-center dinner-div">
           <h2>Dinner</h2>
-          <%var random = Math.floor((Math.random()*searchResult.length)+ 1)%>
-          <%var randomMovie = Math.floor((Math.random()*movies.length)+ 1)%>
-          <h3><%=searchResult[random].name%></h3>
-          <img class="question-img" src="<%=searchResult[random].image_url%>" alt="question-mark">
+          <img class="question-img" src="/images/question-mark.png" alt="question-mark">
         </div>
         <div class="col-md-6 text-center movie-div">
           <h2>Movie</h2>
-          <h3><%=movies[random].title%> </h3>
-          <img class="question-img" src="<%=movies[random].poster_image.image_files[0].url%>" alt="question-mark">
+          <img class="question-img" src="/images/question-mark.png" alt="question-mark">
         </div>
       </div>
   </div>
@@ -24,14 +20,13 @@
   var $inputDiv = $('.input-div')
   var $zipInput = $('<input type="text" placeholder="Zip Code" class="zipInput"></input><br>')
   var $randomButton = $('<button class="btn">Random Date</button>')
-  // if user clicks on random...
-  // var $favoriteThisDinner = $("<span id='faveDinner' class='glyphicon glyphicon-star-empty'></span>")
-  // var $favoriteThisMovie = $("<span id='faveMovie' class='glyphicon glyphicon-star-empty'></span>")
-  // $dinnerDiv.append($favoriteThisDinner)
-  // $movieDiv.append($favoriteThisMovie)
+  var $favoriteThisDinner = $("<span id='faveDinner' class='glyphicon glyphicon-star-empty'></span>")
+  var $favoriteThisMovie = $("<span id='faveMovie' class='glyphicon glyphicon-star-empty'></span>")
   $mainDiv.append($zipInput) // to get val do $zipInput.val()
   $mainDiv.append($randomButton)
-
+  $favoriteThisDinner.on('click', function() {
+    console.log(this)
+  })
   $randomButton.on('click', function() {
     // animate
     $.ajax({
@@ -39,12 +34,10 @@
     })
     .done(function(data) {
       console.log(data)
-
+      $dinnerDiv.append($favoriteThisDinner)
+      $movieDiv.append($favoriteThisMovie)
     })
   })
 
-  // To randomize an array
-  // $randomButton.on('click', function() {
-  //
-  // })
+
 </script>

@@ -64,30 +64,7 @@ app.use((req, res, next) => {//custom middleware, comes with three arguments, re
 })
 
 app.get('/', (req, res) => {
-  // if(req.query.zipCode && req.query.foodType) {
-    var zipCode = '90401'
-    var foodType = 'american'
-    const searchRequest = {
-      term: foodType,
-      location: zipCode,
-      radius: 10000,
-      open_now: true
-    };
-    yelp.accessToken(clientId, clientSecret).then(response => {
-      const client = yelp.client(response.jsonBody.access_token);
-      client.search(searchRequest).then(response => {
-        const searchResult = response.jsonBody.businesses;
-        CinepassAPI.init('CcRgdWOMlbM7xoRfx4S3LKrkumTA2tip')
-        CinepassAPI.getMovies({city_ids: '3526'}, (movies)=>{
-          // console.log(movies[1]);
-          res.render('index', {searchResult: searchResult, movies: movies})
-        })
-      });
-    }).catch(e => {console.log(e);});
-  // } else {
-    // res.render('index')
-  // }
-
+res.render('index')
 })
 
 app.get('/random', (req, res) => {
