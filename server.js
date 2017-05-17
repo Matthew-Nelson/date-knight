@@ -49,18 +49,17 @@ app.use(express.static(__dirname + '/public'))
 app.use(session({
 	secret: 'boomchakalaka',
 	cookie: {maxAge: 60000000},
-	resave: true, //if you continue to use the site, the cookie age will refresh
-	saveUninitialized: false, //do you want to save cookies for people who arent logged in? in this case, no
+	resave: true,
+	saveUninitialized: false,
 	store: store
 }))
 
-app.use(passport.initialize()) //adding passport middleware
-app.use(passport.session()) //hey passport, whenever you log somebody in, use cookies
+app.use(passport.initialize())
+app.use(passport.session())
 
-app.use((req, res, next) => {//custom middleware, comes with three arguments, request, response, and whatever comes next
-	app.locals.currentUser = req.user //we are setting a globally accessible user variable
-	app.locals.isLoggedIn = !!req.user //checking if someone is logged in
-
+app.use((req, res, next) => {
+	app.locals.currentUser = req.user
+	app.locals.isLoggedIn = !!req.user
 	next()
 })
 
