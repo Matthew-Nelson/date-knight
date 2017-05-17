@@ -22,7 +22,7 @@ const
   clientSecret = 'C7mlUNxCQ2QsE1PmeMLJGkz5J1ITcL0rAtoEP7CjBw814U7eld6emqSmSPkVSnTp',
   passport = require('passport'),
   passportConfig = require('./config/passport.js'),
-  PORT = 3000
+  PORT = process.env.PORT || 3000
   // PORT = process.env.PORT || 3000
 
 mongoose.connect(mongoDB, (err) => {
