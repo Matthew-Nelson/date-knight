@@ -2,6 +2,7 @@ const
   express = require('express'),
   app = express(),
   mongoose = require('mongoose'),
+  dotenv = require('dotenv').load({silent: true}),
   yelp = require('yelp-fusion'),
   flash = require('connect-flash'),
   logger = require('morgan'),
@@ -20,7 +21,6 @@ const
   clientId = 'B8KK0dTkGvmwwQl-4EsWfA',
   clientSecret = 'C7mlUNxCQ2QsE1PmeMLJGkz5J1ITcL0rAtoEP7CjBw814U7eld6emqSmSPkVSnTp',
   passport = require('passport'),
-  dotenv = require('dotenv').load({silent: true}),
   passportConfig = require('./config/passport.js'),
   PORT = 3000
   // PORT = process.env.PORT || 3000
