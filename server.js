@@ -14,12 +14,13 @@ const
   methodOverride = require('method-override'),
   session = require('express-session'),
   mongoDBStore = require('connect-mongodb-session')(session),
-  mongoDB = ('mongodb://localhost/date-knight'),
+  mongoDB = process.env.MONGO_URL || 'mongodb://localhost/date-knight',
   CinepassAPI = require('cinepass-api'),
   findango = require('findango-api'),
   clientId = 'B8KK0dTkGvmwwQl-4EsWfA',
   clientSecret = 'C7mlUNxCQ2QsE1PmeMLJGkz5J1ITcL0rAtoEP7CjBw814U7eld6emqSmSPkVSnTp',
   passport = require('passport'),
+  dotenv = require('dotenv').load({silent: true}),
   passportConfig = require('./config/passport.js'),
   PORT = 3000
   // PORT = process.env.PORT || 3000
