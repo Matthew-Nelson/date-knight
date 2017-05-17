@@ -20,7 +20,9 @@ const
     zipCode: Number,
     profilePic: String,
     movies: [movieSchema],
-    restaurants: [restuarantSchema]
+    genrePreferences: [],
+    restaurants: [restuarantSchema],
+    cuisinePreferences: []
   })
 
   userSchema.methods.generateHash = function(password){
