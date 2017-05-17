@@ -1,4 +1,5 @@
 const
+  dotenv = require('dotenv').load({silent: true}),
   express = require('express'),
   app = express(),
   mongoose = require('mongoose'),
@@ -17,8 +18,9 @@ const
   mongoDB = ('mongodb://localhost/date-knight'),
   CinepassAPI = require('cinepass-api'),
   findango = require('findango-api'),
-  clientId = 'B8KK0dTkGvmwwQl-4EsWfA',
-  clientSecret = 'C7mlUNxCQ2QsE1PmeMLJGkz5J1ITcL0rAtoEP7CjBw814U7eld6emqSmSPkVSnTp',
+  clientId = process.env.YELP_CLIENT_ID,
+  clientSecret = process.env.YELP_CLIENT_SECRET,
+  cinepassKey = process.env.CINEPASS_KEY,
   passport = require('passport'),
   passportConfig = require('./config/passport.js'),
   PORT = 3000
@@ -75,7 +77,7 @@ app.get('/', (req, res) => {
     const client = yelp.client(response.jsonBody.access_token);
     client.search(searchRequest).then(response => {
       const searchResult = response.jsonBody.businesses;
-      CinepassAPI.init('CcRgdWOMlbM7xoRfx4S3LKrkumTA2tip')
+      CinepassAPI.init(cinepassKey)
       CinepassAPI.getMovies({city_ids: '3526'}, (movies)=>{
         // console.log(movies[1]);
         res.render('index', {searchResult: searchResult, movies: movies})
