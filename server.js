@@ -18,8 +18,9 @@ const
   mongoDB = process.env.MONGO_URL || 'mongodb://localhost/date-knight',
   CinepassAPI = require('cinepass-api'),
   findango = require('findango-api'),
-  clientId = 'B8KK0dTkGvmwwQl-4EsWfA',
-  clientSecret = 'C7mlUNxCQ2QsE1PmeMLJGkz5J1ITcL0rAtoEP7CjBw814U7eld6emqSmSPkVSnTp',
+  clientId = process.env.YELP_CLIENT_ID,
+  clientSecret = process.env.YELP_CLIENT_SECRET,
+  cinepassKey = process.env.CINEPASS_KEY,
   passport = require('passport'),
   passportConfig = require('./config/passport.js'),
   PORT = process.env.PORT || 3000
@@ -64,25 +65,33 @@ app.use((req, res, next) => {//custom middleware, comes with three arguments, re
 })
 
 app.get('/', (req, res) => {
-  var zipCode = '90401'
-  var foodType = 'bar'
-  const searchRequest = {
-    term: foodType,
-    location: zipCode,
-    radius: 10000,
-    open_now: true
-  };
-  yelp.accessToken(clientId, clientSecret).then(response => {
-    const client = yelp.client(response.jsonBody.access_token);
-    client.search(searchRequest).then(response => {
-      const searchResult = response.jsonBody.businesses;
-      CinepassAPI.init('CcRgdWOMlbM7xoRfx4S3LKrkumTA2tip')
-      CinepassAPI.getMovies({city_ids: '3526'}, (movies)=>{
-        // console.log(movies[1]);
-        res.render('index', {searchResult: searchResult, movies: movies})
-      })
-    });
-  }).catch(e => {console.log(e);});
+ res.render('index')
+})
+
+app.get('/random', (req, res) => {
+  // if(req.query.zipCode && req.query.foodType) {
+    var zipCode = req.query.zipCode
+    var foodType = 'american'
+    const searchRequest = {
+      term: foodType,
+      location: zipCode,
+      radius: 10000,
+      open_now: true
+    };
+    yelp.accessToken(clientId, clientSecret).then(response => {
+      const client = yelp.client(response.jsonBody.access_token);
+      client.search(searchRequest).then(response => {
+        const searchResult = response.jsonBody.businesses;
+        CinepassAPI.init(cinepassKey)
+        CinepassAPI.getMovies({city_ids: '3526'}, (movies)=>{
+          // console.log(movies[1]);
+          res.json({searchResult: searchResult, movies: movies})
+        })
+      });
+    }).catch(e => {console.log(e);});
+  // } else {
+    // res.render('index')
+  // }
 
 })
 
