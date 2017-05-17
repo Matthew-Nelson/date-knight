@@ -3,11 +3,15 @@
       <div class="col-md-12 col-centered main text-center">
         <div class="col-md-6 text-center dinner-div">
           <h2>Dinner</h2>
-          <img class="question-img" src="images/question-mark.png" alt="question-mark">
+          <%var random = Math.floor((Math.random()*searchResult.length)+ 1)%>
+          <%var randomMovie = Math.floor((Math.random()*movies.length)+ 1)%>
+          <h3><%=searchResult[random].name%></h3>
+          <img class="question-img" src="<%=searchResult[random].image_url%>" alt="question-mark">
         </div>
         <div class="col-md-6 text-center movie-div">
           <h2>Movie</h2>
-          <img class="question-img" src="images/question-mark.png" alt="question-mark">
+          <h3><%=movies[random].title%> </h3>
+          <img class="question-img" src="<%=movies[random].poster_image.image_files[0].url%>" alt="question-mark">
         </div>
       </div>
   </div>
