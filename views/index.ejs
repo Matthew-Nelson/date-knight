@@ -2,13 +2,24 @@
 #movie-roulette {
       height: 400px;
       width: 400px;
-      background-image: url('./public/moviespostersss.jpg');
+      background-image: url('/images/moviepostersss.jpg');
     }
 
     #movie {
       width: 400px;
       display: none;
     }
+
+    #food-roulette {
+          height: 400px;
+          width: 400px;
+          background-image: url('/images/foodpostersss.jpg');
+        }
+
+        #food {
+          width: 400px;
+          display: none;
+        }
 
     .spinning {
       animation-name: spin-animation;
@@ -45,6 +56,10 @@
       <img id="movie" src="https://wh1k8zidop.inscname.net/big/524810.jpg?v=1462392691">
     </div>
 
+    <div id="food-roulette">
+      <img id="food" src="https://www.lakeridgewinery.com/img/shrimp.jpg">
+    </div>
+
 
 <div class="text-center col-md-8 col-md-offset-2">
     <h3>Login or Sign Up:</h3>
@@ -69,16 +84,22 @@
 
   var $movieStrip = $('#movie-roulette')
   var $movie = $('#movie')
+  var $foodStrip = $('#food-roulette')
+  var $food = $('#food')
 
   $randomButton.on('click', function() {
     $movieStrip.addClass('spinning')
     $movie.hide()
+    $foodStrip.addClass('spinning')
+    $food.hide()
 
     // ajax call begins, get a random movie...
     // in the callback of the ajax call:
     setTimeout(function() {
       $movieStrip.removeClass('spinning')
       $movie.fadeIn()
+      $foodStrip.removeClass('spinning')
+      $food.fadeIn()
     }, 2000)
   })
 
