@@ -60,10 +60,18 @@
 
         </div>
         <select class="foodSelect" name="">
+          <option value="restaurant">Random</option>
           <option value="american">American</option>
           <option value="thai">Thai</option>
           <option value="pizza">Pizza</option>
-          <option value="burger">Burgers</option>
+          <option value="asian">Asian</option>
+          <option value="cafes">Cafes</option>
+          <option value="italian">Italian</option>
+          <option value="sushi">Sushi</option>
+          <option value="mexican">Mexican</option>
+          <option value="breakfast">Breakfast</option>
+          <option value="seafood">Seafood</option>
+          <option value="chinese">Chinese</option>
         </select><br>
       </div>
   </div>
@@ -97,6 +105,7 @@
   var $movieImg = $('.movie-img')
   var $restaurantName = $('.restaurant-name')
   var $movieTitle = $('.movie-title')
+  var $foodSelect = $('.foodSelect')
   // if user clicks on random...
   // var $favoriteThisDinner = $("<span id='faveDinner' class='glyphicon glyphicon-star-empty'></span>")
   // var $favoriteThisMovie = $("<span id='faveMovie' class='glyphicon glyphicon-star-empty'></span>")
@@ -107,13 +116,6 @@
   var $movie = $('#movie')
   var $foodStrip = $('#food-roulette')
   var $food = $('#food')
-
-  // $randomButton.on('click', function() {
-  //
-  //
-  //
-  // })
-
   $mainDiv.append($zipInput) // to get val do $zipInput.val()
   $mainDiv.append($randomButton)
 
@@ -130,9 +132,8 @@
     $food.hide()
     // animate
     $.ajax({
-      url: '/random?zipCode=' + $zipInput.val()/* + '&foodType='*/
+      url: '/random?zipCode=' + $zipInput.val() + '&foodType=' + $('.foodSelect :selected').val()
     })
-    .done(function(data) {
 console.log(data)
       // ajax call begins, get a random movie...
       // in the callback of the ajax call:
@@ -144,8 +145,6 @@ console.log(data)
         $dinnerImg.attr('src', data.searchResult[random].image_url )
         $movieTitle.text(data.movies[randomMovie].original_title)
         $movieImg.attr('src', data.movies[randomMovie].poster_image.image_files[0].url)
-        $zipInput.hide()
-        $randomButton.hide()
 
         $movieStrip.removeClass('spinning')
         $movie.fadeIn()
@@ -155,10 +154,4 @@ console.log(data)
 
     })
   })
-
-  // To randomize an array
-  // $randomButton.on('click', function() {
-  //
-  // })
-
 </script>

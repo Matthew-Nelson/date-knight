@@ -68,9 +68,8 @@ app.get('/', (req, res) => {
 })
 
 app.get('/random', (req, res) => {
-  // if(req.query.zipCode && req.query.foodType) {
     var zipCode = req.query.zipCode
-    var foodType = 'american'
+    var foodType = req.query.foodType
     const searchRequest = {
       term: foodType,
       location: zipCode,
@@ -88,9 +87,7 @@ app.get('/random', (req, res) => {
         })
       });
     }).catch(e => {console.log(e);});
-  // } else {
-    // res.render('index')
-  // }
+
 
 })
 
