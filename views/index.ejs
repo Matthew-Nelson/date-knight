@@ -12,10 +12,18 @@
           <img class="movie-img" src="/images/question-mark.png" alt="question-mark">
         </div>
         <select class="foodSelect" name="">
+          <option value="restaurant">Random</option>
           <option value="american">American</option>
           <option value="thai">Thai</option>
           <option value="pizza">Pizza</option>
-          <option value="burger">Burgers</option>
+          <option value="asian">Asian</option>
+          <option value="cafes">Cafes</option>
+          <option value="italian">Italian</option>
+          <option value="sushi">Sushi</option>
+          <option value="mexican">Mexican</option>
+          <option value="breakfast">Breakfast</option>
+          <option value="seafood">Seafood</option>
+          <option value="chinese">Chinese</option>
         </select><br>
       </div>
   </div>
@@ -44,23 +52,17 @@
   $randomButton.on('click', function() {
     // animate
     $.ajax({
-      url: '/random?zipCode=' + $zipInput.val() + '&foodType=' + $
+      url: '/random?zipCode=' + $zipInput.val() + '&foodType=' + $('.foodSelect :selected').val()
     })
     .done(function(data) {
       console.log(data)
+      console.log($('.foodSelect :selected').val());
       var random = Math.floor((Math.random()*data.searchResult.length)+ 1)
       var randomMovie = Math.floor((Math.random()*data.movies.length)+ 1)
       $restaurantName.text(data.searchResult[random].name)
       $dinnerImg.attr('src', data.searchResult[random].image_url )
       $movieTitle.text(data.movies[randomMovie].original_title)
       $movieImg.attr('src', data.movies[randomMovie].poster_image.image_files[0].url)
-      $zipInput.hide()
-      $randomButton.hide()
     })
   })
-
-  // To randomize an array
-  // $randomButton.on('click', function() {
-  //
-  // })
 </script>
