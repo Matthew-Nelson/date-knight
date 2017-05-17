@@ -1,8 +1,8 @@
 const
-  dotenv = require('dotenv').load({silent: true}),
   express = require('express'),
   app = express(),
   mongoose = require('mongoose'),
+  dotenv = require('dotenv').load({silent: true}),
   yelp = require('yelp-fusion'),
   flash = require('connect-flash'),
   logger = require('morgan'),
@@ -15,7 +15,7 @@ const
   methodOverride = require('method-override'),
   session = require('express-session'),
   mongoDBStore = require('connect-mongodb-session')(session),
-  mongoDB = ('mongodb://localhost/date-knight'),
+  mongoDB = process.env.MONGO_URL || 'mongodb://localhost/date-knight',
   CinepassAPI = require('cinepass-api'),
   findango = require('findango-api'),
   clientId = process.env.YELP_CLIENT_ID,
@@ -23,7 +23,7 @@ const
   cinepassKey = process.env.CINEPASS_KEY,
   passport = require('passport'),
   passportConfig = require('./config/passport.js'),
-  PORT = 3000
+  PORT = process.env.PORT || 3000
   // PORT = process.env.PORT || 3000
 
 mongoose.connect(mongoDB, (err) => {
@@ -65,25 +65,33 @@ app.use((req, res, next) => {//custom middleware, comes with three arguments, re
 })
 
 app.get('/', (req, res) => {
-  var zipCode = '90401'
-  var foodType = 'bar'
-  const searchRequest = {
-    term: foodType,
-    location: zipCode,
-    radius: 10000,
-    open_now: true
-  };
-  yelp.accessToken(clientId, clientSecret).then(response => {
-    const client = yelp.client(response.jsonBody.access_token);
-    client.search(searchRequest).then(response => {
-      const searchResult = response.jsonBody.businesses;
-      CinepassAPI.init(cinepassKey)
-      CinepassAPI.getMovies({city_ids: '3526'}, (movies)=>{
-        // console.log(movies[1]);
-        res.render('index', {searchResult: searchResult, movies: movies})
-      })
-    });
-  }).catch(e => {console.log(e);});
+ res.render('index')
+})
+
+app.get('/random', (req, res) => {
+  // if(req.query.zipCode && req.query.foodType) {
+    var zipCode = req.query.zipCode
+    var foodType = 'american'
+    const searchRequest = {
+      term: foodType,
+      location: zipCode,
+      radius: 10000,
+      open_now: true
+    };
+    yelp.accessToken(clientId, clientSecret).then(response => {
+      const client = yelp.client(response.jsonBody.access_token);
+      client.search(searchRequest).then(response => {
+        const searchResult = response.jsonBody.businesses;
+        CinepassAPI.init(cinepassKey)
+        CinepassAPI.getMovies({city_ids: '3526'}, (movies)=>{
+          // console.log(movies[1]);
+          res.json({searchResult: searchResult, movies: movies})
+        })
+      });
+    }).catch(e => {console.log(e);});
+  // } else {
+    // res.render('index')
+  // }
 
 })
 
