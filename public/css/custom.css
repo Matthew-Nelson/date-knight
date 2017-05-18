@@ -9,6 +9,10 @@ body {
   position: relative;
 }
 
+.favorited {
+  color: yellow;
+}
+
 /*Profile Page*/
 .profile-row {
   background-color: #ebf6fa;

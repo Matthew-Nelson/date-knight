@@ -47,6 +47,7 @@
         <div id="food-roulette">
           <img id="food" class="dinner-img" src="/images/question-mark.png" alt="question-mark">
           <!-- <img id="food" src="https://www.lakeridgewinery.com/img/shrimp.jpg"> -->
+          <span id='faveDinner' class='glyphicon glyphicon-star unfavorited'></span>
         </div>
 
       </div>
@@ -56,6 +57,7 @@
         <div id="movie-roulette">
           <!-- <img id="movie" src="https://wh1k8zidop.inscname.net/big/524810.jpg?v=1462392691"> -->
           <img id="movie" class="movie-img" src="/images/question-mark.png" alt="question-mark">
+          <span id='faveMovie' class='glyphicon glyphicon-star unfavorited'></span>
         </div>
       </div>
 
@@ -110,19 +112,49 @@
   var $restaurantName = $('.restaurant-name')
   var $movieTitle = $('.movie-title')
   var $foodSelect = $('.foodSelect')
-  // if user clicks on random...
-  // var $favoriteThisDinner = $("<span id='faveDinner' class='glyphicon glyphicon-star-empty'></span>")
-  // var $favoriteThisMovie = $("<span id='faveMovie' class='glyphicon glyphicon-star-empty'></span>")
-  // $dinnerDiv.append($favoriteThisDinner)
-  // $movieDiv.append($favoriteThisMovie)
-  //vars for the food/movies images.
   var $movieStrip = $('#movie-roulette')
   var $movie = $('#movie')
   var $foodStrip = $('#food-roulette')
   var $food = $('#food')
+  var $faveDinner = $('#faveDinner')
+  var $faveMovie = $('#faveMovie')
+  $faveDinner.hide()
+  $faveMovie.hide()
   // $mainDiv.append($zipInput) // to get val do $zipInput.val()
   // $mainDiv.append($randomButton)
   // var $button = $('.roll')
+  $faveDinner.on('click', function() {
+    $faveDinner.removeClass('unfavorited').addClass('favorited')
+    var name = $(this).parent().parent().children().eq(1).text()
+    var img = $(this).parent().children()[0].src
+    requestSettings = {
+      method: 'POST',
+      url: '/users/<%=currentUser._id%>/favorites/dinner',
+      data: JSON.stringify({name: name, img: img}),
+      contentType: 'application/json'
+    }
+    $.ajax(requestSettings)
+      .done( function(responseData) {
+        console.log(responseData)
+        // fill in the star to alert user it has been favorited
+      })
+  })
+  $faveMovie.on('click', function() {
+    $faveDinner.removeClass('unfavorited').addClass('favorited')
+    var name = $(this).parent().parent().children().eq(1).text()
+    var img = $(this).parent().children()[0].src
+    requestSettings = {
+      method: 'POST',
+      url: '/users/<%=currentUser._id%>/favorites/movie',
+      data: JSON.stringify({name: name, img: img}),
+      contentType: 'application/json'
+    }
+    $.ajax(requestSettings)
+      .done( function(responseData) {
+        console.log(responseData)
+        // fill in the star to alert user it has been favorited
+      })
+  })
   $randomButton.on('click', function() {
     $movieStrip.addClass('spinning')
     $movie.hide()
@@ -133,6 +165,8 @@
         url: '/random?zipCode=' + $zipInput.val() + '&foodType=' + $('.foodSelect :selected').val()
       })
       .done(function(data) {
+        $faveDinner.show()
+        $faveMovie.show()
         console.log(data)
         console.log($('.foodSelect :selected').val());
         var random = Math.floor((Math.random() * data.searchResult.length) + 1)

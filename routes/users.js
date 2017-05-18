@@ -18,6 +18,9 @@ usersRouter.route('/:id/favorites')
   .get(usersController.favorites)
 
 usersRouter.route('/:id/favorites/dinner')
-  patch(usersController.dinner)
+  .post(usersController.dinner)
+
+usersRouter.route('/:id/favorites/movie')
+  .post(usersController.movie)
 
 module.exports = usersRouter
