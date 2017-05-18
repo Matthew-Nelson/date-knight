@@ -101,8 +101,8 @@
   var $dinnerDiv = $('.dinner-div')
   var $movieDiv = $('.movie-div')
   var $inputDiv = $('.input-div')
-  var $zipInput = $('<input type="text" placeholder="Zip Code" class="zipInput" required="true"></input><br>')
-  var $randomButton = $('<button type="submit" class="btn">Random Date</button>')
+  var $zipInput = $('<input type="text" placeholder="Zip Code" class="zipInput"></input><br>')
+  var $randomButton = $('<button class="btn">Random Date</button>')
   var $dinnerImg = $('.dinner-img')
   var $movieImg = $('.movie-img')
   var $restaurantName = $('.restaurant-name')
@@ -120,8 +120,8 @@
   var $food = $('#food')
 
   var $zipcodeInput = $('.zipcode-input')
-  $zipcodeInput.append($zipInput) // to get val do $zipInput.val()
-  $zipcodeInput.append($randomButton)
+  $mainDiv.append($zipInput) // to get val do $zipInput.val()
+  $mainDiv.append($randomButton)
 
 
       // var $button = $('.roll')
@@ -130,9 +130,6 @@
 
 
   $randomButton.on('click', function() {
-    if($zipInput.val() == ""){
-
-    }
     $movieStrip.addClass('spinning')
     $movie.hide()
     $foodStrip.addClass('spinning')
