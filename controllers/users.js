@@ -40,7 +40,8 @@ module.exports = {
   update: (req, res) => {
     if(req.xhr){
       User.findById(req.params.id, (err, user) => {
-        user.cuisinePreferences = req.body
+        user.cuisinePreferences = req.body[0]
+        user.genrePreferences = req.body[1]
         user.save(function(err, user){
           res.json(user)
         })
