@@ -10,6 +10,10 @@ body {
   border-radius: 100%;
 }
 
+.favorited {
+  color: yellow;
+}
+
 /*Profile Page*/
 .profile-row {
   background-color: #ebf6fa;
@@ -29,6 +33,13 @@ body {
   padding-left: 40px;
 }
 
+<<<<<<< HEAD
+=======
+img{
+  border-radius: 100%;
+}
+
+>>>>>>> newpull
 .footer{
   margin-top: 19%;
   margin-left: 20px;
@@ -36,6 +47,9 @@ body {
   position: relative;
   z-index: 1;
 }
+
 .selection{
   text-align: center;
 }
+
+/**/
