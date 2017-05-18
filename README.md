@@ -1,5 +1,5 @@
 # PROJECT # 3: DATE KNIGHT
-![](logo.png)
+![](public/images/logo.png)
 
 ## Date Knight App
 
@@ -58,8 +58,8 @@ https://github.com/matthewnelson18/date-knight
 
 
 
-![](erd3.jpg)
+![](public/images/erd3.jpg)
 
 **The Wireframe for this project is below:**
 
-![](date-knight-wires_3.jpg)
+![](public/images/date-knight-wires_3.jpg)
