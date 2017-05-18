@@ -70,16 +70,39 @@ body {
   padding-left: 40px;
 }
 
+
+img{
+  border-radius: 100%;
+}
+
+/*.footer{
+
 .footer{
   margin-top: 19%;
   margin-left: 20px;
   height: 10px;
   position: relative;
   z-index: 1;
-}
+}*/
 
 .selection{
   text-align: center;
 }
 
+.logo{
+  height: 40px;
+  width: 40px;
+  margin-top: 5px;
+  margin-right: 5px;
+  float: left;
+  border-radius: 0%;
+}
+
+.footer{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 10px;
+  margin-left: 5px;
+}
 /**/
