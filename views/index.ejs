@@ -43,30 +43,24 @@
       <div class="col-md-12 col-centered main text-center">
         <div class="col-md-5 col-md-offset-1 text-center dinner-div">
           <h2>Dinner</h2>
-<<<<<<< HEAD
           <img class="dinner-img" src="/images/question-mark.png" alt="question-mark">
-=======
           <h3 class="restaurant-name"></h3>
           <div id="food-roulette">
             <img id="food" class="dinner-img" src="/images/question-mark.png" alt="question-mark">
             <!-- <img id="food" src="https://www.lakeridgewinery.com/img/shrimp.jpg"> -->
           </div>
 
->>>>>>> ad66c820e03a84dfe4c6aa8472ec107bb236e7b5
         </div>
         <div class="col-md-5 text-center movie-div">
           <h2>Movie</h2>
-<<<<<<< HEAD
           <img class="movie-img" src="/images/question-mark.png" alt="question-mark">
           <h3 class="restaurant-name"></h3>
-=======
           <h3 class="movie-title"></h3>
           <div id="movie-roulette">
             <!-- <img id="movie" src="https://wh1k8zidop.inscname.net/big/524810.jpg?v=1462392691"> -->
             <img id="movie" class="movie-img" src="/images/question-mark.png" alt="question-mark">
           </div>
 
->>>>>>> ad66c820e03a84dfe4c6aa8472ec107bb236e7b5
         </div>
         <select class="foodSelect" name="">
           <option value="restaurant">Random</option>
@@ -153,22 +147,15 @@
     })
     .done(function(data) {
       console.log(data)
-<<<<<<< HEAD
       $dinnerDiv.append($favoriteThisDinner)
       $movieDiv.append($favoriteThisMovie)
-=======
       console.log($('.foodSelect :selected').val());
->>>>>>> ad66c820e03a84dfe4c6aa8472ec107bb236e7b5
       var random = Math.floor((Math.random()*data.searchResult.length)+ 1)
       var randomMovie = Math.floor((Math.random()*data.movies.length)+ 1)
       $restaurantName.text(data.searchResult[random].name)
       $dinnerImg.attr('src', data.searchResult[random].image_url )
       $movieTitle.text(data.movies[randomMovie].original_title)
       $movieImg.attr('src', data.movies[randomMovie].poster_image.image_files[0].url)
-
-<<<<<<< HEAD
-
-=======
         $movieStrip.removeClass('spinning')
         $movie.fadeIn()
         $foodStrip.removeClass('spinning')
@@ -177,5 +164,4 @@
 
     })
   // })
->>>>>>> ad66c820e03a84dfe4c6aa8472ec107bb236e7b5
 </script>
