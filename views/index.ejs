@@ -57,13 +57,23 @@
             <!-- <img id="movie" src="https://wh1k8zidop.inscname.net/big/524810.jpg?v=1462392691"> -->
             <img id="movie" class="movie-img" src="/images/question-mark.png" alt="question-mark">
           </div>
+          <form class="zipcode-input" action="index.html" method="post">
 
+          </form>
         </div>
         <select class="foodSelect" name="">
+          <option value="restaurant">Random</option>
           <option value="american">American</option>
           <option value="thai">Thai</option>
           <option value="pizza">Pizza</option>
-          <option value="burger">Burgers</option>
+          <option value="asian">Asian</option>
+          <option value="cafes">Cafes</option>
+          <option value="italian">Italian</option>
+          <option value="sushi">Sushi</option>
+          <option value="mexican">Mexican</option>
+          <option value="breakfast">Breakfast</option>
+          <option value="seafood">Seafood</option>
+          <option value="chinese">Chinese</option>
         </select><br>
       </div>
   </div>
@@ -75,14 +85,14 @@
 
 
 
-<div class="row">
+<!-- <div class="row">
 <div class="text-center col-md-8 col-md-offset-2">
     <h3>Login or Sign Up:</h3>
     <a href="/login" class="btn btn-default">Login</a>
     <a href="/signup" class="btn btn-default">Signup</a>
     <hr>
 </div>
-</div>
+</div> -->
 
 
 
@@ -91,12 +101,13 @@
   var $dinnerDiv = $('.dinner-div')
   var $movieDiv = $('.movie-div')
   var $inputDiv = $('.input-div')
-  var $zipInput = $('<input type="text" placeholder="Zip Code" class="zipInput"></input><br>')
-  var $randomButton = $('<button class="btn">Random Date</button>')
+  var $zipInput = $('<input type="text" placeholder="Zip Code" class="zipInput" required="true"></input><br>')
+  var $randomButton = $('<button type="submit" class="btn">Random Date</button>')
   var $dinnerImg = $('.dinner-img')
   var $movieImg = $('.movie-img')
   var $restaurantName = $('.restaurant-name')
   var $movieTitle = $('.movie-title')
+  var $foodSelect = $('.foodSelect')
   // if user clicks on random...
   // var $favoriteThisDinner = $("<span id='faveDinner' class='glyphicon glyphicon-star-empty'></span>")
   // var $favoriteThisMovie = $("<span id='faveMovie' class='glyphicon glyphicon-star-empty'></span>")
@@ -108,14 +119,9 @@
   var $foodStrip = $('#food-roulette')
   var $food = $('#food')
 
-  // $randomButton.on('click', function() {
-  //
-  //
-  //
-  // })
-
-  $mainDiv.append($zipInput) // to get val do $zipInput.val()
-  $mainDiv.append($randomButton)
+  var $zipcodeInput = $('.zipcode-input')
+  $zipcodeInput.append($zipInput) // to get val do $zipInput.val()
+  $zipcodeInput.append($randomButton)
 
 
       // var $button = $('.roll')
@@ -124,28 +130,26 @@
 
 
   $randomButton.on('click', function() {
+    if($zipInput.val().required == null){
+
+    }
     $movieStrip.addClass('spinning')
     $movie.hide()
     $foodStrip.addClass('spinning')
     $food.hide()
     // animate
     $.ajax({
-      url: '/random?zipCode=' + $zipInput.val()/* + '&foodType='*/
+      url: '/random?zipCode=' + $zipInput.val() + '&foodType=' + $('.foodSelect :selected').val()
     })
     .done(function(data) {
-console.log(data)
-      // ajax call begins, get a random movie...
-      // in the callback of the ajax call:
-      setTimeout(function() {
-
-        var random = Math.floor((Math.random()*data.searchResult.length)+ 1)
-        var randomMovie = Math.floor((Math.random()*data.movies.length)+ 1)
-        $restaurantName.text(data.searchResult[random].name)
-        $dinnerImg.attr('src', data.searchResult[random].image_url )
-        $movieTitle.text(data.movies[randomMovie].original_title)
-        $movieImg.attr('src', data.movies[randomMovie].poster_image.image_files[0].url)
-        $zipInput.hide()
-        $randomButton.hide()
+      console.log(data)
+      console.log($('.foodSelect :selected').val());
+      var random = Math.floor((Math.random()*data.searchResult.length)+ 1)
+      var randomMovie = Math.floor((Math.random()*data.movies.length)+ 1)
+      $restaurantName.text(data.searchResult[random].name)
+      $dinnerImg.attr('src', data.searchResult[random].image_url )
+      $movieTitle.text(data.movies[randomMovie].original_title)
+      $movieImg.attr('src', data.movies[randomMovie].poster_image.image_files[0].url)
 
         $movieStrip.removeClass('spinning')
         $movie.fadeIn()
@@ -153,12 +157,7 @@ console.log(data)
         $food.fadeIn()
       }, 2000)
 
+
     })
-  })
-
-  // To randomize an array
-  // $randomButton.on('click', function() {
-  //
   // })
-
 </script>

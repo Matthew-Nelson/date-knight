@@ -6,6 +6,7 @@ body {
 .movie-img, .dinner-img {
   height: 400px;
   width: 400px;
+  position: relative;
 }
 
 /*Profile Page*/
@@ -37,6 +38,11 @@ img{
   float: left;
   border-radius: 0%;
 }
+
 .footer{
-  margin-top: 70px;
+   position: absolute;
+   bottom: 0;
+   width: 100%;
+   height: 10px;
+   margin-left: 5px;
 }
