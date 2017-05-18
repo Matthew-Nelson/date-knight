@@ -35,8 +35,10 @@
         <option value="seafood">Seafood</option>
         <option value="chinese">Chinese</option>
       </select><br>
-      <input type="text" placeholder="Zip Code" class="zipInput"></input><br>
-      <button class="btn">Random Date</button>
+      <form class="zip">
+        <input type="text" placeholder="Zip Code" class="zipInput" required="true"></input><br>
+        <button class="btn">Random Date</button>
+      </form>
     </div>
   </div>
 </div>
@@ -57,6 +59,25 @@
   var $movie = $('#movie')
   var $foodStrip = $('#food-roulette')
   var $food = $('#food')
+
+  // $mainDiv.append($zipInput) // to get val do $zipInput.val()
+  // $mainDiv.append($randomButton)
+  // var $button = $('.roll')
+
+
+
+
+
+  $randomButton.on('click', function(evt) {
+      if($zipInput.val()) {
+      evt.preventDefault()
+      $movieStrip.addClass('spinning')
+      $movie.hide()
+      $foodStrip.addClass('spinning')
+      $food.hide()
+      // animate
+      $.ajax({
+
   var $faveDinner = $('#faveDinner')
   var $faveMovie = $('#faveMovie')
   var $loggedIn = $('#true')
@@ -102,6 +123,7 @@
   <% } %>
 
     $.ajax({
+
         url: '/random?zipCode=' + $zipInput.val() + '&foodType=' + $('.foodSelect :selected').val()
       })
       .done(function(data) {
@@ -121,6 +143,12 @@
         $movie.fadeIn()
         $foodStrip.removeClass('spinning')
         $food.fadeIn()
-      }, 2000)
+
+        }, 2000)
+      }
+
+
+      
+
   })
 </script>
