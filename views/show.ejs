@@ -15,22 +15,26 @@
       <span class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#editModal"></span>
     </div>
 
-    <div class="col-md-3" style="max-height: 230px; overflow: auto;">
+    <div class="col-md-3">
       <h3>Food prefs:</h3>
-      <ul id="food-list-head" class="col-md-6">
-        <% for (var i = 0; i < user.cuisinePreferences.length; i++) { %>
-          <li><%= user.cuisinePreferences[i] %></li>
-        <% } %>
-      </ul>
+      <div class="" style="max-height: 160px; overflow: auto;">
+        <ul id="food-list-head" class="col-md-6">
+          <% for (var i = 0; i < user.cuisinePreferences.length; i++) { %>
+            <li><%= user.cuisinePreferences[i] %></li>
+          <% } %>
+        </ul>
+      </div>
     </div>
 
     <div class="col-md-3" style="max-height: 230px; overflow: auto;">
       <h3>Genre prefs:</h3>
-      <ul id="genre-list-head" class="col-md-6">
-        <% for (var i = 0; i < user.genrePreferences.length; i++) { %>
-          <li><%= user.genrePreferences[i] %></li>
-        <% } %>
-      </ul>
+      <div class="" style="max-height: 160px; overflow: auto;">
+        <ul id="genre-list-head" class="col-md-6">
+          <% for (var i = 0; i < user.genrePreferences.length; i++) { %>
+            <li><%= user.genrePreferences[i] %></li>
+          <% } %>
+        </ul>
+      </div>
     </div>
 
 
