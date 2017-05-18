@@ -17,4 +17,7 @@ usersRouter.route('/:id')
 usersRouter.route('/:id/favorites')
   .get(usersController.favorites)
 
+usersRouter.route('/:id/favorites/dinner')
+  patch(usersController.dinner)
+
 module.exports = usersRouter
