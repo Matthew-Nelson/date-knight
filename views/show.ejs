@@ -9,7 +9,12 @@
       <% } %>
     </div>
     <div class="col-md-4 center profile-info">
+
       <h2><%= user.local.username %></h2>
+
+      <p>Food prefs: <%= user.cuisinePreferences %></p>
+      <p>Genre prefs: <%= user.genrePreferences %></p>
+
       <p><%= user.zipCode %></p>
       <span class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#editModal"></span>
     </div>
@@ -28,11 +33,14 @@
     <!-- <button class="btn">See All Favorites</button> -->
     <hr>
     <h2>Preferences</h2>
+    <button type="button" id="preferences-button" name="button">Update Preferences</button>
     <div class="col-lg-12">
+      <div class="col-lg-12">
+        <h3><span class="col-lg-6">Cuisine Preferences</span><span class="col-lg-6">Genre Preferences</span></h3>
+      </div>
       <div id="cuisine-preferences" class="container col-lg-6">
-        <h3>Cuisine Prefernces</h3>
 
-        <label class="custom-control custom-checkbox col-md-6">
+        <label id="american-new"class="custom-control custom-checkbox col-md-6">
           <input type="checkbox" class="custom-control-input pull-left">
           <span class="custom-control-indicator"></span>
           <span class="custom-control-description">American (New)</span>
@@ -125,8 +133,7 @@
 
       </div>
 
-      <div id="movie-genre-preferences" class="container col-lg-6">
-          <h3>Movie Genre Preferences</h3>
+      <div id="genre-preferences" class="container col-lg-6">
 
         <label class="custom-control custom-checkbox col-md-6">
           <input type="checkbox" class="custom-control-input pull-left">
@@ -236,9 +243,6 @@
           <span class="custom-control-description">Western</span>
         </label>
 
-
-
-
       </div>
 
     </div>
@@ -276,3 +280,33 @@
 
 </div>
 </div>
+
+<script type="text/javascript">
+  var updatePreferences = $("#preferences-button")
+  updatePreferences.on('click', function(){
+    //checks if each box is checked and if it is will put it into an array
+    var cuisines = []
+    $('#cuisine-preferences').children().each(function(){
+      if($(this).children().first().is(':checked')){
+        cuisines.push($(this).children().last().html())
+      }
+    })
+    var genres = []
+    $('#genre-preferences').children().each(function(){
+      if($(this).children().first().is(':checked')){
+        genres.push($(this).children().last().html())
+      }
+    })
+    var requestSetttings = {
+      url: "/users/<%= user.id %>",
+      method: "patch",
+      data: JSON.stringify([cuisines, genres]),
+      contentType: 'application/json'
+    }
+    //sending our arrays to the user on server
+    $.ajax(requestSetttings).done(function(data){
+      //will return the user with updated info
+      console.log(data)
+    })
+  })
+</script>

@@ -1,24 +1,107 @@
+<style media="screen">
+#movie-roulette {
+      height: 400px;
+      width: 400px;
+      border-radius: 100%;
+      background-image: url('/images/moviepostersss.jpg');
+    }
+
+    #movie {
+      width: 400px;
+      /*display: none;*/
+    }
+
+    #food-roulette {
+          height: 400px;
+          width: 400px;
+          border-radius: 100%;
+          background-image: url('/images/foodpostersss.jpg');
+        }
+
+        #food {
+          width: 400px;
+          /*display: none;*/
+        }
+
+    .spinning {
+      animation-name: spin-animation;
+      animation-duration: 1s;
+      animation-iteration-count:infinite;
+      -webkit-animation-timing-function: linear; /* Safari 4.0 - 8.0 */
+      animation-timing-function: linear;
+    }
+
+    @keyframes spin-animation {
+      0% { background-position: center 0px }
+      100% { background-position: center -2400px }
+    }
+</style>
+
+
 <div class="row">
   <div class="container">
       <div class="col-md-12 col-centered main text-center">
-        <div class="col-md-6 text-center dinner-div">
+        <div class="col-md-5 col-md-offset-1 text-center dinner-div">
           <h2>Dinner</h2>
+<<<<<<< HEAD
           <img class="dinner-img" src="/images/question-mark.png" alt="question-mark">
+=======
+          <h3 class="restaurant-name"></h3>
+          <div id="food-roulette">
+            <img id="food" class="dinner-img" src="/images/question-mark.png" alt="question-mark">
+            <!-- <img id="food" src="https://www.lakeridgewinery.com/img/shrimp.jpg"> -->
+          </div>
+
+>>>>>>> ad66c820e03a84dfe4c6aa8472ec107bb236e7b5
         </div>
-        <div class="col-md-6 text-center movie-div">
+        <div class="col-md-5 text-center movie-div">
           <h2>Movie</h2>
+<<<<<<< HEAD
           <img class="movie-img" src="/images/question-mark.png" alt="question-mark">
           <h3 class="restaurant-name"></h3>
+=======
+          <h3 class="movie-title"></h3>
+          <div id="movie-roulette">
+            <!-- <img id="movie" src="https://wh1k8zidop.inscname.net/big/524810.jpg?v=1462392691"> -->
+            <img id="movie" class="movie-img" src="/images/question-mark.png" alt="question-mark">
+          </div>
+
+>>>>>>> ad66c820e03a84dfe4c6aa8472ec107bb236e7b5
         </div>
         <select class="foodSelect" name="">
+          <option value="restaurant">Random</option>
           <option value="american">American</option>
           <option value="thai">Thai</option>
           <option value="pizza">Pizza</option>
-          <option value="burger">Burgers</option>
+          <option value="asian">Asian</option>
+          <option value="cafes">Cafes</option>
+          <option value="italian">Italian</option>
+          <option value="sushi">Sushi</option>
+          <option value="mexican">Mexican</option>
+          <option value="breakfast">Breakfast</option>
+          <option value="seafood">Seafood</option>
+          <option value="chinese">Chinese</option>
         </select><br>
       </div>
   </div>
 </div>
+
+
+    <!-- this is where the ajax request for movie and food will go. -->
+
+
+
+
+<!-- <div class="row">
+<div class="text-center col-md-8 col-md-offset-2">
+    <h3>Login or Sign Up:</h3>
+    <a href="/login" class="btn btn-default">Login</a>
+    <a href="/signup" class="btn btn-default">Signup</a>
+    <hr>
+</div>
+</div> -->
+
+
 
 <script type="text/javascript">
   var $mainDiv = $('.main')
@@ -33,35 +116,66 @@
   var $movieImg = $('.movie-img')
   var $restaurantName = $('.restaurant-name')
   var $movieTitle = $('.movie-title')
+  var $foodSelect = $('.foodSelect')
   // if user clicks on random...
   // var $favoriteThisDinner = $("<span id='faveDinner' class='glyphicon glyphicon-star-empty'></span>")
   // var $favoriteThisMovie = $("<span id='faveMovie' class='glyphicon glyphicon-star-empty'></span>")
   // $dinnerDiv.append($favoriteThisDinner)
   // $movieDiv.append($favoriteThisMovie)
+      //vars for the food/movies images.
+  var $movieStrip = $('#movie-roulette')
+  var $movie = $('#movie')
+  var $foodStrip = $('#food-roulette')
+  var $food = $('#food')
   $mainDiv.append($zipInput) // to get val do $zipInput.val()
   $mainDiv.append($randomButton)
+<<<<<<< HEAD
   $favoriteThisDinner.on('click', function() {
     console.log(this)
   })
+=======
+
+
+      // var $button = $('.roll')
+
+
+
+
+>>>>>>> ad66c820e03a84dfe4c6aa8472ec107bb236e7b5
   $randomButton.on('click', function() {
+    $movieStrip.addClass('spinning')
+    $movie.hide()
+    $foodStrip.addClass('spinning')
+    $food.hide()
     // animate
     $.ajax({
-      url: '/random?zipCode=' + $zipInput.val()/* + '&foodType='*/
+      url: '/random?zipCode=' + $zipInput.val() + '&foodType=' + $('.foodSelect :selected').val()
     })
     .done(function(data) {
       console.log(data)
+<<<<<<< HEAD
       $dinnerDiv.append($favoriteThisDinner)
       $movieDiv.append($favoriteThisMovie)
+=======
+      console.log($('.foodSelect :selected').val());
+>>>>>>> ad66c820e03a84dfe4c6aa8472ec107bb236e7b5
       var random = Math.floor((Math.random()*data.searchResult.length)+ 1)
       var randomMovie = Math.floor((Math.random()*data.movies.length)+ 1)
       $restaurantName.text(data.searchResult[random].name)
       $dinnerImg.attr('src', data.searchResult[random].image_url )
       $movieTitle.text(data.movies[randomMovie].original_title)
       $movieImg.attr('src', data.movies[randomMovie].poster_image.image_files[0].url)
-      $zipInput.hide()
-      $randomButton.hide()
+
+<<<<<<< HEAD
+
+=======
+        $movieStrip.removeClass('spinning')
+        $movie.fadeIn()
+        $foodStrip.removeClass('spinning')
+        $food.fadeIn()
+      }, 2000)
+
     })
-  })
-
-
+  // })
+>>>>>>> ad66c820e03a84dfe4c6aa8472ec107bb236e7b5
 </script>
