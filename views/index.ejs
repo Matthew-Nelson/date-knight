@@ -140,7 +140,7 @@
       })
   })
   $faveMovie.on('click', function() {
-    $faveDinner.removeClass('unfavorited').addClass('favorited')
+    $faveMovie.removeClass('unfavorited').addClass('favorited')
     var name = $(this).parent().parent().children().eq(1).text()
     var img = $(this).parent().children()[0].src
     requestSettings = {
