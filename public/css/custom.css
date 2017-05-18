@@ -10,6 +10,47 @@ body {
   border-radius: 100%;
 }
 
+.favorited {
+  color: yellow;
+}
+
+#movie-roulette {
+  height: 400px;
+  width: 400px;
+  border-radius: 100%;
+  background-image: url('/images/moviepostersss.jpg');
+}
+#movie {
+  width: 400px;
+  /*display: none;*/
+}
+#food-roulette {
+  height: 400px;
+  width: 400px;
+  border-radius: 100%;
+  background-image: url('/images/foodpostersss.jpg');
+}
+#food {
+  width: 400px;
+  /*display: none;*/
+}
+.spinning {
+  animation-name: spin-animation;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+  /* Safari 4.0 - 8.0 */
+  animation-timing-function: linear;
+}
+@keyframes spin-animation {
+  0% {
+    background-position: center 0px
+  }
+  100% {
+    background-position: center -2400px
+  }
+}
+
 /*Profile Page*/
 .profile-row {
   background-color: #ebf6fa;
@@ -29,6 +70,12 @@ body {
   padding-left: 40px;
 }
 
+
+img{
+  border-radius: 100%;
+}
+
+
 .footer{
   margin-top: 19%;
   margin-left: 20px;
@@ -36,9 +83,11 @@ body {
   position: relative;
   z-index: 1;
 }
+
 .selection{
   text-align: center;
 }
+
 .logo{
   height: 40px;
   width: 40px;
@@ -55,3 +104,6 @@ body {
    height: 10px;
    margin-left: 5px;
 }
+
+
+/**/

@@ -24,7 +24,6 @@ const
   passport = require('passport'),
   passportConfig = require('./config/passport.js'),
   PORT = process.env.PORT || 3000
-  // PORT = process.env.PORT || 3000
 
 mongoose.connect(mongoDB, (err) => {
   console.log(err || "Connected to mongo DB!")
@@ -64,8 +63,7 @@ app.use((req, res, next) => {
 })
 
 app.get('/', (req, res) => {
-
- res.render('index')
+  res.render('index')
 })
 
 app.get('/random', (req, res) => {
