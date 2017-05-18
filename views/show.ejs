@@ -97,43 +97,40 @@
   var cuisineList = ['American (New)', 'American (Traditional)', 'Asian Fusion', 'Breakfast & Brunch', 'Burgers', 'Cafes', 'Chinese', 'Delis', 'Fast Food', 'Italian', 'Japanese', 'Mediterranean', 'Mexican', 'Pizza', 'Salad', 'Sandwiches', 'Seafood', 'Sushi Bars']
   var currentCuisineCount = $('#food-list-head').children().length
   var cuisineArray = []
-  console.log(currentCuisineCount)
   for (var i = 0; i < currentCuisineCount; i++) {
-    console.log($('#food-list-head').children()[i].innerHTML)
     cuisineArray.push($('#food-list-head').children()[i].innerHTML)
-
   }
 
   var genreList = ['Action', 'Adventure', 'Animation', 'Biography', 'Comedy', 'Crime', 'Documentary', 'Drama', 'Family', 'Fantasy', 'History', 'Horror', 'Music', 'Musical', 'Mystery', 'Romance', 'Sci-Fi', 'Sport', 'Thriller', 'War', 'Western']
   var currentGenreCount = $('#genre-list-head').children().length
   var genreArray = []
-  console.log(currentGenreCount)
   for (var i = 0; i < currentGenreCount; i++) {
-    console.log($('#genre-list-head').children()[i].innerHTML)
     genreArray.push($('#genre-list-head').children()[i].innerHTML)
   }
-  //console.log($foodListHead);
-
-  // $genreListHead.children().each(function(line){
-  //   //console.log(line)
-  // })
 
 //creating our cuisine list item
   for (var i = 0; i < cuisineList.length; i++) {
+    var currentCheck = cuisineList[i]
     var newCheckBox = '<label class="custom-control custom-checkbox col-md-6"><input type="checkbox" class="custom-control-input pull-left"'
-    //
-    // for (var n = 0; n < $foodListHead.length; n++) {
-    //   $('#food-list-head').children().each(function(line){
-    //     console.log(line.html())
-    //   })
-    // }
+    for (var n = 0; n < cuisineArray.length; n++) {
+      if(cuisineArray[n] == currentCheck){
+        newCheckBox += " checked"
+      }
+    }
     newCheckBox += '><span class="custom-control-indicator"></span><span class="custom-control-description">' + cuisineList[i] + '</span></label>'
     $('#cuisine-preferences').append(newCheckBox)
   }
 
 //creating our genre list item
   for (var i = 0; i < genreList.length; i++) {
-    var newCheckBox = '<label class="custom-control custom-checkbox col-md-6"><input type="checkbox" class="custom-control-input pull-left"><span class="custom-control-indicator"></span><span class="custom-control-description">' + genreList[i] + '</span></label>'
+    var currentCheck = genreList[i]
+    var newCheckBox = '<label class="custom-control custom-checkbox col-md-6"><input type="checkbox" class="custom-control-input pull-left"'
+    for (var n = 0; n < genreArray.length; n++) {
+      if(genreArray[n] == currentCheck){
+        newCheckBox += " checked"
+      }
+    }
+    newCheckBox += '><span class="custom-control-indicator"></span><span class="custom-control-description">' + genreList[i] + '</span></label>'
     $('#genre-preferences').append(newCheckBox)
   }
 
