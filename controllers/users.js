@@ -38,10 +38,20 @@ module.exports = {
   },
 
   update: (req, res) => {
-    User.findByIdAndUpdate(req.params.id, req.body, {new: true}, (err, user) => {
-      if(err) return console.log(err)
-      res.redirect('/users/' + user.id)
-    })
+    if(req.xhr){
+      User.findById(req.params.id, (err, user) => {
+        user.cuisinePreferences = req.body
+        user.save(function(err, user){
+          res.json(user)
+        })
+      })
+    } else {
+      User.findByIdAndUpdate(req.params.id, req.body, {new: true}, (err, user) => {
+        if(err) return console.log(err)
+        res.redirect('/users/' + user.id)
+      })
+    }
+
   },
 
   destroy: (req, res) => {

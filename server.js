@@ -68,6 +68,7 @@ app.get('/', (req, res) => {
 })
 
 app.get('/random', (req, res) => {
+  console.log(req.body);
     var zipCode = req.query.zipCode
     var foodType = req.query.foodType
     const searchRequest = {
