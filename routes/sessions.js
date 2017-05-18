@@ -14,7 +14,7 @@ sessionsRouter.route('/signup')
   }))
 
 sessionsRouter.get('/profile', isLoggedIn, (req, res) => {
-  res.redirect('/' + req.user.id)
+  res.redirect('/users/' + req.user.id)
 })
 
 sessionsRouter.route('/login')
