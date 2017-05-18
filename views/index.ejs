@@ -37,7 +37,6 @@
   }
 </style>
 
-
 <div class="row">
   <div class="container">
     <div class="col-md-12 col-centered main text-center">
@@ -65,17 +64,11 @@
     <div class="selection">
       <select class="foodSelect" name="">
         <option value="restaurant">Random</option>
-        <option value="american">American</option>
-        <option value="thai">Thai</option>
-        <option value="pizza">Pizza</option>
-        <option value="asian">Asian</option>
-        <option value="cafes">Cafes</option>
-        <option value="italian">Italian</option>
-        <option value="sushi">Sushi</option>
-        <option value="mexican">Mexican</option>
-        <option value="breakfast">Breakfast</option>
-        <option value="seafood">Seafood</option>
-        <option value="chinese">Chinese</option>
+        <% if(isLoggedIn) {%>
+          <%for(i = 0; i < currentUser.cuisinePreferences.length; i +=1) {%>
+              <option value="<%=currentUser.cuisinePreferences[i]%>"><%=currentUser.cuisinePreferences[i]%></option>
+            <% }%>
+        <% } %>
       </select><br>
       <input type="text" placeholder="Zip Code" class="zipInput"></input><br>
       <button class="btn">Random Date</button>
