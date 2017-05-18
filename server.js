@@ -64,6 +64,7 @@ app.use((req, res, next) => {
 })
 
 app.get('/', (req, res) => {
+
  res.render('index')
 })
 
@@ -83,8 +84,10 @@ app.get('/random', (req, res) => {
         const searchResult = response.jsonBody.businesses;
         CinepassAPI.init(cinepassKey)
         CinepassAPI.getMovies({city_ids: '3526'}, (movies)=>{
-          // console.log(movies[1]);
-          res.json({searchResult: searchResult, movies: movies})
+          User.findById(req.params.id, (err, user)=>{
+            if (err) {console.log(err);}
+            res.json({searchResult: searchResult, movies: movies, user, user})
+          })
         })
       });
     }).catch(e => {console.log(e);});
