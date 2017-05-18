@@ -37,6 +37,10 @@
       </select><br>
       <input type="text" placeholder="Zip Code" class="zipInput"></input><br>
       <button class="btn">Random Date</button>
+      <!-- <form class="zip">
+        <input type="text" placeholder="Zip Code" class="zipInput"></input><br>
+        <button class="btn">Random Date</button>
+      </form> -->
     </div>
   </div>
 </div>
@@ -62,11 +66,11 @@
   var $loggedIn = $('#true')
   $faveDinner.hide()
   $faveMovie.hide()
-  $randomButton.on('click', function() {
-  $movieStrip.addClass('spinning')
-  $movie.hide()
-  $foodStrip.addClass('spinning')
-  $food.hide()
+  // $randomButton.on('click', function() {
+  // $movieStrip.addClass('spinning')
+  // $movie.hide()
+  // $foodStrip.addClass('spinning')
+  // $food.hide()
 
   <% if(isLoggedIn) { %>
     $faveDinner.on('click', function() {
@@ -101,6 +105,14 @@
     })
   <% } %>
 
+  $randomButton.on('click', function() {
+    if($zipInput.val().length != 5){
+      console.log("stop");
+    }
+    $movieStrip.addClass('spinning')
+    $movie.hide()
+    $foodStrip.addClass('spinning')
+    $food.hide()
     $.ajax({
         url: '/random?zipCode=' + $zipInput.val() + '&foodType=' + $('.foodSelect :selected').val()
       })
