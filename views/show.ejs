@@ -93,8 +93,8 @@
 
     <div class="modal-footer">
       <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-      <form class="delete-btn" action="<%=user.id%>/delete?_method=DELETE" method="POST">
-        <button type="submit" class="btn btn-danger">Delete</button>
+      <form class="delete-btn" action="<%=user._id%>/?_method=DELETE" method="POST">
+        <button type="submit" name="button" class="btn btn-danger">Delete</button>
       </form>
     </div>
   </div>
