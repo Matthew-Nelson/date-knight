@@ -64,11 +64,7 @@ app.use((req, res, next) => {
 })
 
 app.get('/', (req, res) => {
-<<<<<<< HEAD
  res.render('index')
-=======
-  res.render('index')
->>>>>>> newpull
 })
 
 app.get('/random', (req, res) => {
