@@ -63,54 +63,6 @@
   var $loggedIn = $('#true')
   $faveDinner.hide()
   $faveMovie.hide()
-//
-//   // $mainDiv.append($zipInput) // to get val do $zipInput.val()
-//   // $mainDiv.append($randomButton)
-//   // var $button = $('.roll')
-//   $faveDinner.on('click', function() {
-//     $faveDinner.removeClass('unfavorited').addClass('favorited')
-//     var name = $(this).parent().parent().children().eq(1).text()
-//     var img = $(this).parent().children()[0].src
-//     requestSettings = {
-//       method: 'POST',
-//       url: '/users/currentUser._id/favorites/dinner',
-//       data: JSON.stringify({
-//         name: name,
-//         img: img
-//       }),
-//       contentType: 'application/json'
-//     }
-//     $.ajax(requestSettings)
-//       .done(function(responseData) {
-//         console.log(responseData)
-//         // fill in the star to alert user it has been favorited
-//       })
-//   })
-//   $faveMovie.on('click', function() {
-//     $faveMovie.removeClass('unfavorited').addClass('favorited')
-//     var name = $(this).parent().parent().children().eq(1).text()
-//     var img = $(this).parent().children()[0].src
-//     requestSettings = {
-//       method: 'POST',
-//       url: '/users/currentUser._id/favorites/movie',
-//       data: JSON.stringify({
-//         name: name,
-//         img: img
-//       }),
-//       contentType: 'application/json'
-//     }
-//     $.ajax(requestSettings)
-//       .done(function(responseData) {
-//         console.log(responseData)
-//         // fill in the star to alert user it has been favorited
-//       })
-//   })
-//   $randomButton.on('click', function() {
-//   $movieStrip.addClass('spinning')
-//   $movie.hide()
-//   $foodStrip.addClass('spinning')
-//   $food.hide()
-// >>>>>>> 85649f0308e640b226d4beb2d9e6cc6db07806be
 
   <% if(isLoggedIn) { %>
     $faveDinner.on('click', function() {
