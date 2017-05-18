@@ -67,7 +67,7 @@
         <% if(isLoggedIn) {%>
           <%for(i = 0; i < currentUser.cuisinePreferences.length; i +=1) {%>
               <option value="<%=currentUser.cuisinePreferences[i]%>"><%=currentUser.cuisinePreferences[i]%></option>
-            <% }%>  
+            <% }%>
         <% } %>
       </select><br>
       <input type="text" placeholder="Zip Code" class="zipInput"></input><br>
@@ -164,10 +164,10 @@
         console.log($('.foodSelect :selected').val());
         var random = Math.floor((Math.random() * data.searchResult.length) + 1)
         var randomMovie = Math.floor((Math.random() * data.movies.length) + 1)
-        $restaurantName.text(data.searchResult[random].name)
-        $dinnerImg.attr('src', data.searchResult[random].image_url)
-        $movieTitle.text(data.movies[randomMovie].original_title)
-        $movieImg.attr('src', data.movies[randomMovie].poster_image.image_files[0].url)
+        $restaurantName.text(data.searchResult[random-1].name)
+        $dinnerImg.attr('src', data.searchResult[random-1].image_url)
+        $movieTitle.text(data.movies[randomMovie-1].original_title)
+        $movieImg.attr('src', data.movies[randomMovie-1].poster_image.image_files[0].url)
         $movieStrip.removeClass('spinning')
         $movie.fadeIn()
         $foodStrip.removeClass('spinning')
