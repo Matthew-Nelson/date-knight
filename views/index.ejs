@@ -50,7 +50,6 @@
         <h3 class="restaurant-name"></h3>
         <div id="food-roulette">
           <img id="food" class="dinner-img" src="/images/question-mark.png" alt="question-mark">
-          <!-- <img id="food" src="https://www.lakeridgewinery.com/img/shrimp.jpg"> -->
           <span id='faveDinner' class='glyphicon glyphicon-star unfavorited'></span>
         </div>
 
@@ -59,7 +58,6 @@
         <h2>Movie</h2>
         <h3 class="movie-title"></h3>
         <div id="movie-roulette">
-          <!-- <img id="movie" src="https://wh1k8zidop.inscname.net/big/524810.jpg?v=1462392691"> -->
           <img id="movie" class="movie-img" src="/images/question-mark.png" alt="question-mark">
           <span id='faveMovie' class='glyphicon glyphicon-star unfavorited'></span>
         </div>
@@ -85,23 +83,6 @@
   </div>
 </div>
 
-
-<!-- this is where the ajax request for movie and food will go. -->
-
-
-
-
-<!-- <div class="row">
-<div class="text-center col-md-8 col-md-offset-2">
-    <h3>Login or Sign Up:</h3>
-    <a href="/login" class="btn btn-default">Login</a>
-    <a href="/signup" class="btn btn-default">Signup</a>
-    <hr>
-</div>
-</div> -->
-
-
-
 <script type="text/javascript">
   var $mainDiv = $('.main')
   var $dinnerDiv = $('.dinner-div')
@@ -120,6 +101,7 @@
   var $food = $('#food')
   var $faveDinner = $('#faveDinner')
   var $faveMovie = $('#faveMovie')
+  var $loggedIn = $('#true')
   $faveDinner.hide()
   $faveMovie.hide()
   // $mainDiv.append($zipInput) // to get val do $zipInput.val()
@@ -131,7 +113,7 @@
     var img = $(this).parent().children()[0].src
     requestSettings = {
       method: 'POST',
-      url: '/users/<%=currentUser._id%>/favorites/dinner',
+      url: '/users/currentUser._id/favorites/dinner',
       data: JSON.stringify({
         name: name,
         img: img
@@ -150,7 +132,7 @@
     var img = $(this).parent().children()[0].src
     requestSettings = {
       method: 'POST',
-      url: '/users/<%=currentUser._id%>/favorites/movie',
+      url: '/users/currentUser._id/favorites/movie',
       data: JSON.stringify({
         name: name,
         img: img
@@ -164,17 +146,52 @@
       })
   })
   $randomButton.on('click', function() {
-    $movieStrip.addClass('spinning')
-    $movie.hide()
-    $foodStrip.addClass('spinning')
-    $food.hide()
-    // animate
+  $movieStrip.addClass('spinning')
+  $movie.hide()
+  $foodStrip.addClass('spinning')
+  $food.hide()
+
+  <% if(isLoggedIn) { %>
+    $faveDinner.on('click', function() {
+      $faveDinner.removeClass('unfavorited').addClass('favorited')
+      var name = $(this).parent().parent().children().eq(1).text()
+      var img = $(this).parent().children()[0].src
+      requestSettings = {
+        method: 'POST',
+        url: '/users/currentUser._id/favorites/dinner',
+        data: JSON.stringify({name: name, img: img}),
+        contentType: 'application/json'
+      }
+      $.ajax(requestSettings)
+        .done( function(responseData) {
+          console.log(responseData)
+        })
+    })
+    $faveMovie.on('click', function() {
+      $faveMovie.removeClass('unfavorited').addClass('favorited')
+      var name = $(this).parent().parent().children().eq(1).text()
+      var img = $(this).parent().children()[0].src
+      requestSettings = {
+        method: 'POST',
+        url: '/users/currentUser._id/favorites/movie',
+        data: JSON.stringify({name: name, img: img}),
+        contentType: 'application/json'
+      }
+      $.ajax(requestSettings)
+        .done( function(responseData) {
+          console.log(responseData)
+        })
+    })
+  <% } %>
+
     $.ajax({
         url: '/random?zipCode=' + $zipInput.val() + '&foodType=' + $('.foodSelect :selected').val()
       })
       .done(function(data) {
+        <% if(isLoggedIn) { %>
         $faveDinner.show()
         $faveMovie.show()
+        <% } %>
         console.log(data)
         console.log($('.foodSelect :selected').val());
         var random = Math.floor((Math.random() * data.searchResult.length) + 1)
@@ -189,5 +206,4 @@
         $food.fadeIn()
       }, 2000)
   })
-  // })
 </script>
