@@ -6,7 +6,7 @@
         <h3 class="restaurant-name"></h3>
         <div id="food-roulette">
           <img id="food" class="dinner-img" src="/images/question-mark.png" alt="question-mark">
-          <span id='faveDinner' class='glyphicon glyphicon-star unfavorited'></span>
+          <span id='faveDinner' class='glyphicon glyphicon-star'></span>
         </div>
 
       </div>
@@ -15,7 +15,7 @@
         <h3 class="movie-title"></h3>
         <div id="movie-roulette">
           <img id="movie" class="movie-img" src="/images/question-mark.png" alt="question-mark">
-          <span id='faveMovie' class='glyphicon glyphicon-star unfavorited'></span>
+          <span id='faveMovie' class='glyphicon glyphicon-star'></span>
         </div>
       </div>
 
@@ -34,10 +34,9 @@
       <% if(isLoggedIn) {%>
         <input type="text" placeholder="Zip Code" class="zip-input" value="<%= currentUser.zipCode %>"></input><br>
         <% } else {%>
-          <input type="text" placeholder="Zip Code" class="zip-input"></input><br>
-          <% } %>
-            <button class="btn">Random Date</button>
-
+        <input type="text" placeholder="Zip Code" class="zip-input"></input><br>
+        <% } %>
+        <button class="btn btn-success">Random Date</button>
     </div>
   </div>
 </div>
@@ -64,9 +63,11 @@
 
   $faveDinner.hide()
   $faveMovie.hide()
+  // if isLoggedIn && class of faveDinner == unfavorited
   <% if(isLoggedIn) { %>
+
     $faveDinner.on('click', function() {
-      $faveDinner.removeClass('unfavorited').addClass('favorited')
+      $faveDinner.addClass('favorited')
       var name = $(this).parent().parent().children().eq(1).text()
       var img = $(this).parent().children()[0].src
       requestSettings = {
@@ -81,7 +82,7 @@
         })
     })
     $faveMovie.on('click', function() {
-      $faveMovie.removeClass('unfavorited').addClass('favorited')
+      $faveMovie.addClass('favorited')
       var name = $(this).parent().parent().children().eq(1).text()
       var img = $(this).parent().children()[0].src
       requestSettings = {
@@ -97,9 +98,10 @@
     })
   <% } %>
   $randomButton.on('click', function() {
+    $faveDinner.removeClass('favorited').hide()
+    $faveMovie.removeClass('favorited').hide()
     if($zipInput.val().length == 5){
       console.log("stop");
-
     $movieStrip.addClass('spinning')
     $movie.hide()
     $foodStrip.addClass('spinning')
@@ -108,10 +110,7 @@
         url: '/random?zipCode=' + $zipInput.val() + '&foodType=' + $('.foodSelect :selected').val()
       })
       .done(function(data) {
-        <% if(isLoggedIn) { %>
-        $faveDinner.show()
-        $faveMovie.show()
-        <% } %>
+
         console.log(data)
         console.log($('.foodSelect :selected').val());
         var random = Math.floor((Math.random() * data.searchResult.length) + 1)
@@ -129,6 +128,27 @@
         $movie.fadeIn()
         $foodStrip.removeClass('spinning')
         $food.fadeIn()
+
+        <% if(isLoggedIn) { %>
+        $faveDinner.show()
+        $faveMovie.show()
+        var resultDinner = $restaurantName[0].innerText
+        var resultMovie = $movieTitle.eq(0).text()
+        var requestSettings = {
+          method: 'GET',
+          url: '/users/<%=currentUser._id %>'
+        }
+        $.ajax(requestSettings).done(function(data) {
+          console.log(data)
+          if(data.movies.map(function(el) {return el.name}).indexOf(resultMovie) > -1){ // movie is favorited
+            $faveMovie.addClass('favorited')
+          }
+          if(data.restaurants.map(function(el) {return el.name}).indexOf(resultDinner) > -1) { //dinner is favorited
+            $faveDinner.addClass('favorited')
+          }
+        })
+
+        <% } %>
       }, 2000)
     } else {
       console.log('Needs zip code');
