@@ -23,18 +23,21 @@
     <div class="selection">
       <select class="foodSelect" name="">
         <option value="restaurant">Random</option>
+
         <% if(isLoggedIn) {%>
           <%for(i = 0; i < currentUser.cuisinePreferences.length; i +=1) {%>
               <option value="<%=currentUser.cuisinePreferences[i]%>"><%=currentUser.cuisinePreferences[i]%></option>
             <% }%>
         <% } %>
       </select><br>
+
       <% if(isLoggedIn) {%>
         <input type="text" placeholder="Zip Code" class="zipInput" value="<%= currentUser.zipCode %>"></input><br>
         <% } else {%>
           <input type="text" placeholder="Zip Code" class="zipInput"></input><br>
           <% } %>
             <button class="btn">Random Date</button>
+
     </div>
   </div>
 </div>
@@ -60,52 +63,6 @@
   var $loggedIn = $('#true')
   $faveDinner.hide()
   $faveMovie.hide()
-  // $mainDiv.append($zipInput) // to get val do $zipInput.val()
-  // $mainDiv.append($randomButton)
-  // var $button = $('.roll')
-  $faveDinner.on('click', function() {
-    $faveDinner.removeClass('unfavorited').addClass('favorited')
-    var name = $(this).parent().parent().children().eq(1).text()
-    var img = $(this).parent().children()[0].src
-    requestSettings = {
-      method: 'POST',
-      url: '/users/currentUser._id/favorites/dinner',
-      data: JSON.stringify({
-        name: name,
-        img: img
-      }),
-      contentType: 'application/json'
-    }
-    $.ajax(requestSettings)
-      .done(function(responseData) {
-        console.log(responseData)
-        // fill in the star to alert user it has been favorited
-      })
-  })
-  $faveMovie.on('click', function() {
-    $faveMovie.removeClass('unfavorited').addClass('favorited')
-    var name = $(this).parent().parent().children().eq(1).text()
-    var img = $(this).parent().children()[0].src
-    requestSettings = {
-      method: 'POST',
-      url: '/users/currentUser._id/favorites/movie',
-      data: JSON.stringify({
-        name: name,
-        img: img
-      }),
-      contentType: 'application/json'
-    }
-    $.ajax(requestSettings)
-      .done(function(responseData) {
-        console.log(responseData)
-        // fill in the star to alert user it has been favorited
-      })
-  })
-  $randomButton.on('click', function() {
-  $movieStrip.addClass('spinning')
-  $movie.hide()
-  $foodStrip.addClass('spinning')
-  $food.hide()
   <% if(isLoggedIn) { %>
     $faveDinner.on('click', function() {
       $faveDinner.removeClass('unfavorited').addClass('favorited')
@@ -138,6 +95,14 @@
         })
     })
   <% } %>
+  $randomButton.on('click', function() {
+    if($zipInput.val().length != 5){
+      console.log("stop");
+    }
+    $movieStrip.addClass('spinning')
+    $movie.hide()
+    $foodStrip.addClass('spinning')
+    $food.hide()
     $.ajax({
         url: '/random?zipCode=' + $zipInput.val() + '&foodType=' + $('.foodSelect :selected').val()
       })
