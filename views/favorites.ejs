@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-lg-12 profile-row container-fluid">
-    <div class="col-md-2 center">
+    <div class="col-sm-2 center">
       <!-- Hardcoded for now, should be user.profilePic -->
       <% if (user.profilePic) { %>
         <img class="profile-image" src="<%= user.profilePic %>" alt="default profile">
@@ -8,14 +8,14 @@
         <img class="profile-image" src="/images/default-avatar.png" alt="default profile">
       <% } %>
     </div>
-    <div class="col-md-3 center profile-info">
+    <div class="col-sm-3 center profile-info">
 
       <h2><%= user.local.username %></h2>
       <p><%= user.zipCode %></p>
       <span class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#editModal"></span>
     </div>
 
-    <div class="col-md-3">
+    <div class="col-sm-3">
       <h3>Food prefs:</h3>
       <div class="" style="max-height: 160px; overflow: auto;">
         <ul id="food-list-head" class="col-md-6">
@@ -26,7 +26,7 @@
       </div>
     </div>
 
-    <div class="col-md-3" style="max-height: 230px; overflow: auto;">
+    <div class="col-sm-3" style="max-height: 230px; overflow: auto;">
       <h3>Genre prefs:</h3>
       <div class="" style="max-height: 160px; overflow: auto;">
         <ul id="genre-list-head" class="col-md-6">
@@ -42,7 +42,7 @@
 </div>
 
 <div class="row">
-  <div class="col-lg-12 text-center">
+  <div class="col-sm-12 text-center">
     <div class="display-message">
       <h2>All Favorites</h2>
       <button class="btn"><a href="/users/<%=currentUser._id%>">Back to Profile</a></button>
@@ -53,7 +53,7 @@
            icon after rolling a random date!</p>
       <% } else { %>
     </div>
-      <div class="col-md-6 dinner-favorites">
+      <div class="col-sm-6 dinner-favorites">
         <h2>Dinner Favorites</h2>
           <ul>
             <% if (user.restaurants.length > 0) { %>
@@ -81,4 +81,34 @@
 
     <% } %>
   </div>
+</div>
+
+<div id="editModal" class="modal fade" role="dialog">
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal">&times;</button>
+      <h4 class="modal-title">Edit Profile Info</h4>
+    </div>
+    <div class="modal-body">
+
+      <!--  Form for edit -->
+      <form method="post" action="/users/<%= user.id %>?_method=PATCH">
+        <input type="text" placeholder="Name" name="local.username" value="<%= user.local.username%>"><br>
+        <input type="text" placeholder="Zip Code" name="zipCode" value="<%= user.zipCode%>"><br>
+        <input type="text" placeholder="Profile Picture URL" name="profilePic" value="<%= user.profilePic%>"><br>
+
+        <button type="submit" class="btn btn-default  ">Submit</button>
+      </form>
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+      <form class="delete-btn" action="<%=user._id%>/?_method=DELETE" method="POST">
+        <button type="submit" name="button" class="btn btn-danger">Delete</button>
+      </form>
+    </div>
+  </div>
+
+</div>
 </div>
