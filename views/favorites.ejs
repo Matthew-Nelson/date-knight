@@ -57,7 +57,7 @@
         <h2>Dinner Favorites</h2>
           <ul>
             <% if (user.restaurants.length > 0) { %>
-              <% for(i=0; i < user.restaurants.length-1; i++) { %>
+              <% for(i=0; i < user.restaurants.length; i++) { %>
                 <li class="favorites-list"><%= user.restaurants[i].name %><br>
                   <img class="favorite-movie" src="<%=user.restaurants[i].img %>" alt="">
                 </li>
@@ -70,7 +70,7 @@
         <h2>Movie Favorites</h2>
           <ul>
             <% if (user.movies.length > 0) { %>
-              <% for(i=0; i < user.movies.length-1; i++) { %>
+              <% for(i=0; i < user.movies.length; i++) { %>
                 <li class="favorites-list"><%= user.movies[i].name %><br>
                   <img class="favorite-dinner" src="<%=user.movies[i].img %>" alt="">
                 </li>

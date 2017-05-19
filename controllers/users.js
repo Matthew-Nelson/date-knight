@@ -15,7 +15,12 @@ module.exports = {
   show: (req, res) => {
     User.findById(req.params.id, (err, user) => {
       if(err) return console.log(err)
-      res.render('show', {user: user})
+      // xhr means ajax
+      if(req.xhr) {
+        res.json(user)
+      } else {
+        res.render('show', {user: user})
+      }
     })
   },
 
