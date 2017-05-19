@@ -96,9 +96,9 @@
     })
   <% } %>
   $randomButton.on('click', function() {
-    if($zipInput.val().length != 5){
+    if($zipInput.val().length == 5){
       console.log("stop");
-    }
+
     $movieStrip.addClass('spinning')
     $movie.hide()
     $foodStrip.addClass('spinning')
@@ -124,5 +124,8 @@
         $foodStrip.removeClass('spinning')
         $food.fadeIn()
       }, 2000)
+    } else {
+      console.log('Needs zip code');
+    }
   })
 </script>
