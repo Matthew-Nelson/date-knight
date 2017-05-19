@@ -1,7 +1,7 @@
 <div class="row">
   <div class="container">
-    <div class="col-md-12 col-centered main text-center">
-      <div class="col-md-5 col-md-offset-1 text-center dinner-div">
+    <div class="col-sm-12 col-centered main text-center">
+      <div class="col-sm-5 col-md-offset-1 text-center dinner-div">
         <h2>Dinner</h2>
         <h3 class="restaurant-name"></h3>
         <div id="food-roulette">
@@ -10,7 +10,7 @@
         </div>
 
       </div>
-      <div class="col-md-5 text-center movie-div">
+      <div class="col-sm-5 text-center movie-div">
         <h2>Movie</h2>
         <h3 class="movie-title"></h3>
         <div id="movie-roulette">
@@ -60,6 +60,7 @@
   var $faveDinner = $('#faveDinner')
   var $faveMovie = $('#faveMovie')
   var $loggedIn = $('#true')
+
   $faveDinner.hide()
   $faveMovie.hide()
   // if isLoggedIn && class of faveDinner == unfavorited
@@ -114,10 +115,15 @@
         console.log($('.foodSelect :selected').val());
         var random = Math.floor((Math.random() * data.searchResult.length) + 1)
         var randomMovie = Math.floor((Math.random() * data.movies.length) + 1)
-        $restaurantName.text(data.searchResult[random - 1].name)
-        $dinnerImg.attr('src', data.searchResult[random - 1].image_url)
-        $movieTitle.text(data.movies[randomMovie - 1].original_title)
-        $movieImg.attr('src', data.movies[randomMovie - 1].poster_image.image_files[0].url)
+        var randomRestaurantName = data.searchResult[random - 1].name
+        var randomRestaurantImg =data.searchResult[random - 1].image_url
+        var randomMovieTitle = data.movies[randomMovie - 1].original_title
+        var randomMovieImg = data.movies[randomMovie - 1].poster_image.image_files[0].url
+        $restaurantName.text(randomRestaurantName)
+        $dinnerImg.attr('src', randomRestaurantImg)
+        $movieTitle.text(randomMovieTitle)
+        $movieImg.attr('src', randomMovieImg)
+        $randomButton.text('Spin again')
         $movieStrip.removeClass('spinning')
         $movie.fadeIn()
         $foodStrip.removeClass('spinning')
@@ -148,4 +154,5 @@
       console.log('Needs zip code');
     }
   })
+
 </script>
