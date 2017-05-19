@@ -5,11 +5,13 @@ const
     name: String,
     rating: Number,
     phoneNumber: Number,
-    cuisine: String
+    cuisine: String,
+    img: String
   }),
   movieSchema = new mongoose.Schema({
     name: String,
-    genre: String
+    genre: String,
+    img: String
   }),
   userSchema = new mongoose.Schema({
     local: {

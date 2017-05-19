@@ -87,9 +87,10 @@ module.exports = {
         var body = req.body
         console.log('this is the body: ', body)
         User.findByIdAndUpdate(req.params.id, {new: true}, (err, user) => {
+          console.log('this is the user: ', user)
           if (err) return console.log(err)
           var movie = {name: body.name, img: body.img}
-          user.restaurants.push(movie)
+          user.movies.push(movie)
           user.save((err) => {
             if (err) return console.log(err)
             res.json({success: true, user: user})
