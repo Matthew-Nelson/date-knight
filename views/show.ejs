@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-lg-12 profile-row container-fluid">
-    <div class="col-md-2 center">
+    <div class="col-sm-2 center">
       <!-- Hardcoded for now, should be user.profilePic -->
       <% if (user.profilePic) { %>
         <img class="profile-image" src="<%= user.profilePic %>" alt="default profile">
@@ -8,17 +8,17 @@
         <img class="profile-image" src="/images/default-avatar.png" alt="default profile">
       <% } %>
     </div>
-    <div class="col-md-3 center profile-info">
+    <div class="col-sm-3 center profile-info">
 
       <h2><%= user.local.username %></h2>
       <p><%= user.zipCode %></p>
       <span class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#editModal"></span>
     </div>
 
-    <div class="col-md-3">
+    <div class="col-sm-3">
       <h3>Food prefs:</h3>
       <div class="" style="max-height: 160px; overflow: auto;">
-        <ul id="food-list-head" class="col-md-6">
+        <ul id="food-list-head" class="col-sm-6">
           <% for (var i = 0; i < user.cuisinePreferences.length; i++) { %>
             <li><%= user.cuisinePreferences[i] %></li>
           <% } %>
@@ -29,7 +29,7 @@
     <div class="col-md-3" style="max-height: 230px; overflow: auto;">
       <h3>Genre prefs:</h3>
       <div class="" style="max-height: 160px; overflow: auto;">
-        <ul id="genre-list-head" class="col-md-6">
+        <ul id="genre-list-head" class="col-sm-6">
           <% for (var i = 0; i < user.genrePreferences.length; i++) { %>
             <li><%= user.genrePreferences[i] %></li>
           <% } %>
@@ -55,13 +55,13 @@
     <hr>
     <h2>Preferences</h2>
     <button class="btn" type="button" id="preferences-button" name="button">Update Preferences</button>
-    <div class="col-lg-12">
-      <div class="col-lg-12">
-        <h3><span class="col-lg-6">Cuisine Preferences</span><span class="col-lg-6">Genre Preferences</span></h3>
+    <div class="col-sm-12">
+      <div class="col-sm-12">
+        <h3><span class="col-lg-6">Cuisine Preferences</span><span class="col-sm-6">Genre Preferences</span></h3>
       </div>
-      <div id="cuisine-preferences" class="container col-lg-6">
+      <div id="cuisine-preferences" class="container col-sm-6">
       </div>
-      <div id="genre-preferences" class="container col-lg-6">
+      <div id="genre-preferences" class="container col-sm-6">
       </div>
 
     </div>
