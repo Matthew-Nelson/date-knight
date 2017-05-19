@@ -43,18 +43,25 @@
 
 <div class="row">
   <div class="col-lg-12 text-center">
-    <h2>All Favorites</h2>
-    <!-- Conditionally show most recent starred -->
-    <% if (user.movies.length == 0 && user.restaurants.length == 0) { %>
-      <p>You have no favorites,
-         to start liking dinners or movies click on the star
-         icon after rolling a random date!</p>
-    <% } else { %>
+    <div class="display-message">
+      <h2>All Favorites</h2>
+      <button class="btn"><a href="/users/<%=currentUser._id%>">Back to Profile</a></button>
+      <!-- Conditionally show most recent starred -->
+      <% if (user.movies.length == 0 && user.restaurants.length == 0) { %>
+        <p>You have no favorites,
+           to start liking dinners or movies click on the star
+           icon after rolling a random date!</p>
+      <% } else { %>
+    </div>
       <div class="col-md-6 dinner-favorites">
         <h2>Dinner Favorites</h2>
           <ul>
             <% if (user.restaurants.length > 0) { %>
-                <%= user.restaurants %>
+              <% for(i=0; i < user.restaurants.length-1; i++) { %>
+                <li class="favorites-list"><%= user.restaurants[i].name %><br>
+                  <img class="favorite-movie" src="<%=user.restaurants[i].img %>" alt="">
+                </li>
+              <%} %>
             <% } %>
         </ul>
       </div>
@@ -63,12 +70,15 @@
         <h2>Movie Favorites</h2>
           <ul>
             <% if (user.movies.length > 0) { %>
-                <%= user.movies %>
+              <% for(i=0; i < user.movies.length-1; i++) { %>
+                <li class="favorites-list"><%= user.movies[i].name %><br>
+                  <img class="favorite-dinner" src="<%=user.movies[i].img %>" alt="">
+                </li>
+              <%} %>
             <% } %>
           </ul>
       </div>
 
     <% } %>
-    <button class="btn">Back To Preferences</button>
   </div>
 </div>

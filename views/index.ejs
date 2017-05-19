@@ -32,9 +32,9 @@
       </select><br>
 
       <% if(isLoggedIn) {%>
-        <input type="text" placeholder="Zip Code" class="zipInput" value="<%= currentUser.zipCode %>"></input><br>
+        <input type="text" placeholder="Zip Code" class="zip-input" value="<%= currentUser.zipCode %>"></input><br>
         <% } else {%>
-          <input type="text" placeholder="Zip Code" class="zipInput"></input><br>
+          <input type="text" placeholder="Zip Code" class="zip-input"></input><br>
           <% } %>
             <button class="btn">Random Date</button>
 
@@ -47,7 +47,7 @@
   var $dinnerDiv = $('.dinner-div')
   var $movieDiv = $('.movie-div')
   var $inputDiv = $('.input-div')
-  var $zipInput = $('.zipInput')
+  var $zipInput = $('.zip-input')
   var $randomButton = $('.btn')
   var $dinnerImg = $('.dinner-img')
   var $movieImg = $('.movie-img')
