@@ -70,7 +70,7 @@
       var img = $(this).parent().children()[0].src
       requestSettings = {
         method: 'POST',
-        url: '/users/currentUser._id/favorites/dinner',
+        url: '/users/<%=currentUser._id%>/favorites/dinner',
         data: JSON.stringify({name: name, img: img}),
         contentType: 'application/json'
       }
@@ -85,7 +85,7 @@
       var img = $(this).parent().children()[0].src
       requestSettings = {
         method: 'POST',
-        url: '/users/currentUser._id/favorites/movie',
+        url: '/users/<%=currentUser._id%>/favorites/movie',
         data: JSON.stringify({name: name, img: img}),
         contentType: 'application/json'
       }
