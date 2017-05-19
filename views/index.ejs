@@ -32,9 +32,9 @@
       </select><br>
 
       <% if(isLoggedIn) {%>
-        <input type="text" placeholder="Zip Code" class="zipInput" value="<%= currentUser.zipCode %>"></input><br>
+        <input type="text" placeholder="Zip Code" class="zip-input" value="<%= currentUser.zipCode %>"></input><br>
         <% } else {%>
-          <input type="text" placeholder="Zip Code" class="zipInput"></input><br>
+          <input type="text" placeholder="Zip Code" class="zip-input"></input><br>
           <% } %>
             <button class="btn">Random Date</button>
 
@@ -47,7 +47,7 @@
   var $dinnerDiv = $('.dinner-div')
   var $movieDiv = $('.movie-div')
   var $inputDiv = $('.input-div')
-  var $zipInput = $('.zipInput')
+  var $zipInput = $('.zip-input')
   var $randomButton = $('.btn')
   var $dinnerImg = $('.dinner-img')
   var $movieImg = $('.movie-img')
@@ -63,7 +63,6 @@
   var $loggedIn = $('#true')
   $faveDinner.hide()
   $faveMovie.hide()
-
   <% if(isLoggedIn) { %>
     $faveDinner.on('click', function() {
       $faveDinner.removeClass('unfavorited').addClass('favorited')
@@ -71,7 +70,7 @@
       var img = $(this).parent().children()[0].src
       requestSettings = {
         method: 'POST',
-        url: '/users/currentUser._id/favorites/dinner',
+        url: '/users/<%=currentUser._id%>/favorites/dinner',
         data: JSON.stringify({name: name, img: img}),
         contentType: 'application/json'
       }
@@ -86,7 +85,7 @@
       var img = $(this).parent().children()[0].src
       requestSettings = {
         method: 'POST',
-        url: '/users/currentUser._id/favorites/movie',
+        url: '/users/<%=currentUser._id%>/favorites/movie',
         data: JSON.stringify({name: name, img: img}),
         contentType: 'application/json'
       }
@@ -96,7 +95,6 @@
         })
     })
   <% } %>
-
   $randomButton.on('click', function() {
     if($zipInput.val().length == 5){
       console.log("stop");
